@@ -171,8 +171,8 @@ export class SharedDataService {
             'Content-Type': `application/json`,
             'X-ClientId': clientId,
             Authorization: `Bearer ${authToken}`,
-            'x-pe-app-type': 'Website',
-            'x-pe-app-version': AppVersion.VersionString
+            'x-mm-app-type': 'Website',
+            'x-mm-app-version': AppVersion.VersionString
         });
     }
 }

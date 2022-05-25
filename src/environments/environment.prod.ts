@@ -1,7 +1,7 @@
 export const environment = {
   production: true,
-  authUrl: "https://auth.ponderegg.com/api/auth",
-  baseUrl: "https://api.ponderegg.com/api",
-  awsUrl: "https://s3.eu-west-2.amazonaws.com/ponderegg-images",
+  authUrl: "https://prod.minymo.net/api/auth",
+  baseUrl: "https://prod.minymo.net/api",
+  awsUrl: "https://s3.eu-west-2.amazonaws.com/minymo-images",
   useTestData: false
 };

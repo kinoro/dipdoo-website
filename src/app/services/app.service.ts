@@ -14,11 +14,11 @@ import { SeoSocialShareService } from './seo-social-share.service';
 })
 export class AppService {
 
-    siteName: string = "ponderEgg";
-    tagTitle: string = "ponderEgg";
+    siteName: string = "Minymo";
+    tagTitle: string = "Minymo";
     tagDescription: string = "Multi choice for the masses";
     tagImage: string = this.resolveAsset("ponderegg-icon-logo-1024.png");
-    tagUrl: string = "https://www.ponderegg.com";
+    tagUrl: string = "https://www.minymo.net";
     tagTwitterCard: string = "summary_large_image";
     isTopVisible: boolean = true;
     isFullHeight: boolean;

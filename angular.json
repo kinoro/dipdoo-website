@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "ponderegg-website": {
+    "minymo-website": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -59,7 +59,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/ponderegg-website",
+            "outputPath": "dist/minymo-website",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -123,18 +123,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "ponderegg-website:build"
+            "browserTarget": "minymo-website:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "ponderegg-website:build:production"
+              "browserTarget": "minymo-website:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ponderegg-website:build"
+            "browserTarget": "minymo-website:build"
           }
         },
         "test": {
@@ -174,18 +174,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "ponderegg-website:serve"
+            "devServerTarget": "minymo-website:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "ponderegg-website:serve:production"
+              "devServerTarget": "minymo-website:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "ponderegg-website",
+  "defaultProject": "minymo-website",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"

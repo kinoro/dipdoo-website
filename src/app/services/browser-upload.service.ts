@@ -59,7 +59,7 @@ export class BrowserUploadService {
         amzCredential += "/s3/aws4_request";
 
         formData.append("key", browserUploadData.key);
-        formData.append("bucket", "ponderegg-images");
+        formData.append("bucket", "minymo-images");
         formData.append("acl", browserUploadData.acl);
         formData.append("Content-Type", browserUploadData.contentType);
         formData.append("x-amz-meta-filename", filename);
