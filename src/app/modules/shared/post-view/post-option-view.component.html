@@ -1,0 +1,52 @@
+<div [class.is-not-checked]="!option.hasUserVoted && hasVotedOnPost" style="width: 100%; height: 100%;">
+    <div class="box has-background-grey-lighter"
+        style="display: flex; flex-direction: column; flex: 1; padding: 0.125rem; height: 100%">
+
+        <!-- Text -->
+        <div *ngIf="option.text != null && option.text.length > 0"
+            style="display: flex; justify-content: center; align-items: center; margin: 0.5rem; text-align: center; flex-grow: 1;"
+            class="has-background-white-ter curved-top-border" [class.curved-bottom-border]="option.imageUrl == null"
+            [class.text-with-image]="option.imageUrl != null">
+            <span>{{option.text}}</span>
+        </div>
+
+        <!-- Image -->
+        <div *ngIf="option.imageUrl != null"
+            style="position: relative; display: flex;"
+            class="image is-4by3 is-centered image-container has-background-white-ter curved-bottom-border"
+            [class.curved-top-border]="option.text == null"
+            [class.margin-top]="option.text == null">
+
+            <div *ngIf="!option.hasImageLoaded" class="level" style="position:absolute; top: 50%; width: 100%; transform: translateY(-50%)">
+                <div class="level-item">
+                    <p><span class="icon"><i class="fas fa-spinner fa-pulse"></i></span></p>
+                </div>
+            </div>
+
+            <img [src]="option.imageUrl" [class.is-hidden]="option.hasImageLoaded != true"
+                [class.fade-in]="option.hasImageLoaded == true" (click)="showMedia()" (load)="onPostImageLoaded(option)"
+                [class.is-landscape]="!option.isPortrait" [class.is-portrait]="option.isPortrait == true" #postImage />
+
+
+            <div *ngIf="option.hasImageLoaded && getMediaType(option.linkUrl) == mediaTypeEnum.YouTube" class="level" style="position:absolute; top: 50%; width: 100%; transform: translateY(-50%);" (click)="showMedia()">
+                <div class="level-item">
+                    <p><span class="icon is-small has-text-white"><i class="fas fa-play"></i></span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Voting -->
+        <div style="display: flex; flex-direction: row; margin: 0 .5rem .5rem .5rem; flex-grow: 0; flex-shrink: 1;">
+            <button class="button is-small has-background-white-ter" (click)="vote(option)"
+                [attr.aria-label]="'btn_vote_' + post.id + '_' + option.id">
+                <span class="icon">
+                    <i class="fas" [class.fa-square-o]="!option.hasUserVoted"
+                        [class.fa-check]="option.hasUserVoted"></i>
+                </span>
+            </button>
+            <div style="display: flex; align-self: center; flex-grow: 1; justify-content: flex-end;">
+                {{option.numVotes}}<span *ngIf="isDesktop">&nbsp;votes</span></div>
+        </div>
+
+    </div>
+</div>

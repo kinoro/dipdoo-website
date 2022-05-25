@@ -1,0 +1,26 @@
+<div *ngIf="users.length == 0 && !isLoadingUsers" class="level">
+    <div class="level-item">
+        <div class="box">
+            <div class="box-content">
+                <span>&nbsp;There are no users to show yet!</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="users.length > 0" class="columns is-centered">
+    <ng-template ngFor let-user [ngForOf]="users" let-i="index">
+        <app-view-user-usersummary [user]="user" class="column is-one-third" style="padding-bottom: 0;"></app-view-user-usersummary>
+    </ng-template>
+</div>
+<div *ngIf="isLoadingUsers" class="level">
+    <div class="level-item">
+        <div class="box">
+            <div class="box-content">
+                <span class="icon">
+                    <i class="fas fa-spinner fa-pulse"></i>
+                </span>
+                <span>&nbsp;Loading users</span>
+            </div>
+        </div>
+    </div>
+</div>

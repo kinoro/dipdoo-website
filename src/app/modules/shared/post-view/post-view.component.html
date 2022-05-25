@@ -1,0 +1,100 @@
+<!-- header -->
+<div class="disable-text-selection" style="background-color: white; min-height: 48px;">
+    <div style="display: flex; min-height: 48px;">
+
+
+        <!-- image -->
+        <figure *ngIf="post.imageUrl != null && getMediaType(post.linkUrl) == mediaTypeEnum.Unknown"
+            class="image is-32x32"
+            style="margin: 8px 0 8px 8px; min-width: 32px; min-height:32px; cursor: pointer; overflow: hidden"
+            (click)="showMediaForPost()">
+            <img [src]="post.imageUrl" alt="post image">
+        </figure>
+        <figure *ngIf="post.imageUrl != null && getMediaType(post.linkUrl) == mediaTypeEnum.YouTube"
+            class="image is-32x32"
+            style="display: grid; margin: 8px 0 8px 8px; min-width: 32px; min-height:32px; cursor: pointer; overflow: hidden"
+            (click)="showMediaForPost()">
+            <img [src]="post.imageUrl" alt="post image">
+            <div style="position: absolute; justify-self: center;">
+                <div class="icon is-small has-text-white">
+                    <i class="fas fa-play"></i>
+                </div>
+            </div>
+        </figure>
+
+        <!-- title and sub details -->
+        <div style="display: flex; flex-direction: column; justify-content: center; margin-left: 8px;">
+            <div>
+                <a *ngIf="allowLinkToPost" class="post-title" [routerLink]='postLink'>{{post.title}}</a>
+                <span *ngIf="!allowLinkToPost">{{post.title}}</span>
+                <ng-template [ngIf]="isDesktop">
+                    <a class="tag is-link" *ngFor="let tag of tagsArray" style="margin: 0px 3px;"
+                        (click)="selectTag(tag)">{{tag}}</a>
+                </ng-template>
+
+                <span *ngIf="post.linkUrl != null && isDesktop" class="is-size-7 has-text-grey-light"
+                    style="padding-left: 10px">({{post.linkUrl}})</span>
+            </div>
+            <div *ngIf="!isDesktop" style="margin-left: -3px;">
+                <a class="tag is-link" *ngFor="let tag of tagsArray" style="margin: 0px 3px;"
+                    (click)="selectTag(tag)">{{tag}}</a>
+            </div>
+            <div class="has-text-grey-light">
+                <span>{{getNumVotesText(post.numVotes)}} •&nbsp;</span>
+                <span [class.link-button]="allowLinkToPost"
+                    (click)="navigateTo(postLink)">{{getNumCommentsText(post.numComments)}}</span>
+                <span *ngIf="!hasReported">
+                    <span> • </span>
+                    <a (click)="showReportModal()" class="has-text-grey-light link-button">report</a>
+                </span>
+                <span *ngIf="!hasDeleted && isAdminOrOwner && !hasStartedDeleting">
+                    <span> • </span>
+                    <a (click)="hasStartedDeleting = true" class="has-text-grey-light link-button">delete</a>
+                </span>
+                <span *ngIf="!hasDeleted && isAdminOrOwner && hasStartedDeleting">
+                    <span> • </span>
+                    <a (click)="delete()" class="has-text-danger link-button">DELETE NOW</a>
+                </span>
+                <span> • by {{post.username}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- options -->
+<div class="columns is-mobile is-multiline disable-text-selection"
+    style="margin-top: 3px; margin-left: 0; margin-right: 0;">
+    <div *ngFor="let option of post.options" class="column" [class.is-2]="isDesktop"
+        [class.is-6]="!isDesktop"
+        style="padding: 0.15rem">
+        <div app-post-option-view [post]="post" [option]="option" style="width: 100%; height: 100%"></div>
+    </div>
+    <div *ngFor="let optionFiller of optionFillers" style="width: 16.5%;">
+    </div>
+</div>
+
+<div class="modal" [class.is-active]="isReportModalActive">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Report this post?</p>
+            <button class="delete" aria-label="close" (click)="cancelReportModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <div id="modal-message">
+                <span>This could result in but is not limited to, the following:</span>
+                <div class="content">
+                    <ul>
+                        <li>The post being removed</li>
+                        <li>The author of the post being banned</li>
+                    </ul>
+                </div>
+                <span>Are you sure you wish to report this post?</span>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-secondary" (click)="confirmReportModal()">Yes, report now</button>
+            <button class="button" (click)="cancelReportModal()">Cancel</button>
+        </footer>
+    </div>
+</div>

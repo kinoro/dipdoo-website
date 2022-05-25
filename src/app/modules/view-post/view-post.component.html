@@ -1,0 +1,55 @@
+<section class="hero is-fullheight">
+    <div class="hero-body module-hero-body-padding" style="align-items: initial;">
+        <div class="container">
+            <div *ngIf="!hasFailed && !hasLoaded" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span class="icon">
+                                <i class="fas fa-spinner fa-pulse"></i>
+                            </span>
+                            <span>&nbsp;Loading post...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="hasFailed" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span>&nbsp;Oops! Looks like there was a problem loading this post.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="!hasFailed && hasLoaded" class="box">
+                <app-post-view [post]="post" [allowLinkToPost]="false"></app-post-view>
+
+                <!-- Details -->
+                <div style="margin-top: 1rem; margin-bottom: 1rem; max-width: 100%;" class="enable-text-selection"
+                    *ngIf="post.details != null && post.details.length > 0">
+                    <div style="background-color: white; padding: 0rem 1rem 0rem 0rem; margin-top: 0.5rem;" [innerText]="getProcessedText(post.details)"></div>
+                </div>
+            </div>
+            <div *ngIf="!hasFailed && hasLoaded" class="box">
+
+                <!-- Comments -->
+                <div style="margin-bottom: 1rem">
+                    <p class="is-size-5">
+                        Comments
+                    </p>
+                    <div style="margin-top: 0.5rem;">
+                        <app-view-post-new-comment></app-view-post-new-comment>
+                        <div>
+                            <app-view-post-comment *ngFor="let comment of comments" [comment]="comment"></app-view-post-comment>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Load more-->
+                <button class="button" *ngIf="canLoadMore && !isLoadingMoreComments" (click)="loadMoreComments()">Show more</button>
+                <button class="button" *ngIf="isLoadingMoreComments">Loading...</button>
+            </div>
+        </div>
+    </div>
+</section>

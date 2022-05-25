@@ -1,0 +1,109 @@
+<div class="box view-content" [class.box-desktop-margin]="isDesktop" [class.box-mobile-margin]="!isDesktop">
+    <div class="media">
+        <div class="media-left">
+            <span class="icon has-text-white" (click)="openUser()"
+                style="border: solid 2px lightgray; border-radius: .25rem; background-color: lightgrey"><i
+                    class="fas fa-user"></i></span>
+        </div>
+        <div class="media-content">
+            <p class="title is-5 username-link" (click)="openUser()">{{username}}</p>
+            <!--<p class="subtitle is-6">{{timeSince}}</p>-->
+        </div>
+    </div>
+    <div *ngIf="!isUserBlocked" class="image is-4by3 is-centered image-container"
+        [class.has-background-white]="isStandardLandscape">
+        <div *ngIf="!hasImageLoaded" class="level" style="position:absolute; top: 50%; width: 100%">
+            <div class="level-item">
+                <p><span class="icon"><i class="fas fa-spinner fa-pulse"></i></span></p>
+            </div>
+        </div>
+        <img [src]="imageUrl" [class.is-hidden]="!hasImageLoaded" [class.fade-in]="hasImageLoaded" (click)="viewPost()"
+            (load)="onPostImageLoaded()" [class.is-landscape]="!isPortrait" [class.is-portrait]="isPortrait"
+            #postImage />
+    </div>
+    <div *ngIf="isUserBlocked" class="image is-4by3 is-centered image-outer-container-standard">
+        <div class="level" style="position:absolute; top: 50%; width: 100%">
+            <div class="level-item">
+                <p><span class="icon"><i class="fas fa-exclamation-circle"></i></span><span>You have blocked this user</span></p>
+            </div>
+        </div>
+    </div>
+    <nav class="level is-mobile">
+        <div class="level-left">
+            <a class="level-item has-text-grey-light" [class.has-text-grey-light]="!doesLikePost"
+                [class.has-text-secondary]="doesLikePost" (click)="toggleLike()">
+                <span class="icon"><i class="fas fa-arrow-up"></i></span>
+                <span class="has-text-primary">{{numLikes}}</span>
+            </a>
+        </div>
+        <div class="level-right">
+            <a class="level-item" (click)="viewPost()">
+                <span class="icon"><i class="fas fa-comment"></i></span>
+                <span>{{numComments}}</span>
+            </a>
+            <a class="level-item" (click)="showShare()">
+                <span class="icon"><i class="fas fa-share"></i></span>
+                <span>Share</span>
+            </a>
+            <a class="level-item has-text-danger" *ngIf="canDelete && !isDeleting" (click)="delete()">
+                <span class="icon"><i class="fas fa-trash"></i></span>
+                <span>Delete</span>
+            </a>
+            <a class="level-item has-text-danger" *ngIf="canDelete && isDeleting">
+                <span class="icon">
+                    <i class="fas fa-spinner fa-pulse"></i>
+                </span>
+                <span>Deleting</span>
+            </a>
+        </div>
+    </nav>
+</div>
+
+<div class="modal" [class.is-active]="isShowingShare">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Share this post</p>
+            <button class="delete" aria-label="close" (click)="cancelShare()"></button>
+        </header>
+        <section class="modal-card-body">
+            <div id="modal-message">
+                <div class="field">
+                    <label class="label">Link to post</label>
+                    <div class="control">
+                        <input class="input" [(ngModel)]="linkUrl" type="text" placeholder="Link Url" spellcheck="false"
+                            #linkUrlInput>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-secondary" (click)="copyLink()">Copy Link</button>
+            <button class="button" (click)="cancelShare()">Close</button>
+            <span class="has-text-success" *ngIf="isLinkCopied">
+                <span class="icon"><i class="fas fa-check-circle"></i></span>
+                <span>Link copied</span>
+            </span>
+        </footer>
+    </div>
+</div>
+
+<div class="modal" [class.is-active]="isRegisterModalActive">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Login or register</p>
+            <button class="delete" aria-label="close" (click)="cancelRegisterModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <div id="modal-message">
+                <p>We're thrilled you want to interact - but please register or login first.</p>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-secondary" routerLink="/sign-in">Login</button>
+            <button class="button is-secondary" routerLink="/sign-up">Register</button>
+            <button class="button" (click)="cancelRegisterModal()">Close</button>
+        </footer>
+    </div>
+</div>

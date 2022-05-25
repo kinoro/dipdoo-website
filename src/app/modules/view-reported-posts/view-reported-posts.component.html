@@ -1,0 +1,42 @@
+<section class="hero is-primary is-small">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Reported Posts
+            </h1>
+            <h2 class="subtitle">
+                Block posts or unreport them
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="hero is-light is-fullheight">
+    <div class="hero-body" style="padding-top: 1rem; align-items: initial;">
+        <div class="container">
+            <div *ngIf="!hasFailed && !hasLoaded" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span class="icon">
+                                <i class="fas fa-spinner fa-pulse"></i>
+                            </span>
+                            <span>&nbsp;Loading posts...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="hasFailed" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span>&nbsp;Oops! Looks like there was a problem loading the posts.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template [ngIf]="!hasFailed && hasLoaded">
+                <app-view-reported-posts-main-content></app-view-reported-posts-main-content>
+            </ng-template>
+        </div>
+    </div>
+</section>

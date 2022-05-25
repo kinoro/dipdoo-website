@@ -1,0 +1,29 @@
+<div class="is-size-5">All Current</div>
+<div style="padding: 2rem;">
+    <div *ngIf="announcements.length == 0 && !isLoading" class="level">
+        <div class="level-item">
+            <div class="box">
+                <div class="box-content">
+                    <span>&nbsp;There are no announcements to show yet!</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="announcements.length > 0">
+        <ng-template ngFor let-announcement [ngForOf]="announcements" let-i="index">
+            <app-view-announcements-announcement [announcement]="announcement"></app-view-announcements-announcement>
+        </ng-template>
+    </div>
+    <div *ngIf="isLoading" class="level">
+        <div class="level-item">
+            <div class="box">
+                <div class="box-content">
+                    <span class="icon">
+                        <i class="fas fa-spinner fa-pulse"></i>
+                    </span>
+                    <span>&nbsp;Loading announcements</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

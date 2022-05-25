@@ -1,0 +1,71 @@
+<section class="hero is-primary is-small">
+    <div class="hero-body module-hero-body-padding">
+        <div class="container">
+            <div class="level is-mobile">
+                <div class="level-left">
+                    <div class="level-item">
+                        <div class="buttons">
+                            <button class="button" [class.is-primary]="!isUserTabType(userTabTypeEnum.Profile)"
+                                [class.mobile-button-max-width]="!isDesktop"
+                                (click)="switchUserTabType(userTabTypeEnum.Profile)">
+                                <span style="overflow: hidden; text-overflow: ellipsis;">{{username}}</span>
+                            </button>
+                            <button class="button" [class.is-primary]="!isUserTabType(userTabTypeEnum.Posts)"
+                                (click)="switchUserTabType(userTabTypeEnum.Posts)">
+                                Posts<span *ngIf="isDesktop">&nbsp;({{numPosts}})</span>
+                            </button>
+                            <button class="button" [class.is-primary]="!isUserTabType(userTabTypeEnum.Followers)"
+                                (click)="switchUserTabType(userTabTypeEnum.Followers)">
+                                Followers<span *ngIf="isDesktop">&nbsp;({{numFollowers}})</span>
+                            </button>
+                            <button class="button" [class.is-primary]="!isUserTabType(userTabTypeEnum.Following)"
+                                (click)="switchUserTabType(userTabTypeEnum.Following)">
+                                Following<span *ngIf="isDesktop">&nbsp;({{numFollowing}})</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="hero is-light is-fullheight">
+    <div class="hero-body module-hero-body-padding" style="align-items: initial;">
+        <div class="container">
+            <div *ngIf="!hasFailed && !hasLoaded" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span class="icon">
+                                <i class="fas fa-spinner fa-pulse"></i>
+                            </span>
+                            <span>&nbsp;Loading user...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="hasFailed" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span>&nbsp;Oops! Looks like there was a problem loading this user.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template [ngIf]="!hasFailed && hasLoaded && isTabSelected(userTabTypeEnum.Profile)">
+                <app-view-user-profile *ngIf="!canShowEditProfile"></app-view-user-profile>
+                <app-edit-user-profile *ngIf="canShowEditProfile"></app-edit-user-profile>
+            </ng-template>
+            <ng-template [ngIf]="!hasFailed && hasLoaded && isTabSelected(userTabTypeEnum.Posts)">
+                <app-view-user-posts></app-view-user-posts>
+            </ng-template>
+            <ng-template [ngIf]="!hasFailed && hasLoaded && isTabSelected(userTabTypeEnum.Followers)">
+                <app-view-user-usersummarys [userSummaryType]="'followers'"></app-view-user-usersummarys>
+            </ng-template>
+            <ng-template [ngIf]="!hasFailed && hasLoaded && isTabSelected(userTabTypeEnum.Following)">
+                <app-view-user-usersummarys [userSummaryType]="'following'"></app-view-user-usersummarys>
+            </ng-template>
+        </div>
+    </div>
+</section>

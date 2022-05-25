@@ -1,0 +1,13 @@
+.footer {
+    padding: 2rem 1.5rem 2rem;
+}
+
+.navbar-item img {
+    max-height: 3rem;
+}
+
+.hero-body {
+    background-color: #dce0e6;
+    padding-bottom: 0.5rem;
+    padding-top: 1rem;
+}

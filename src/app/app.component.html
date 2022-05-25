@@ -1,0 +1,96 @@
+<section class="hero disable-text-selection" [class.is-fullheight]="isFullHeight">
+    <div class="hero-head">
+        <nav *ngIf="isTopVisible" class="navbar" role="navigation">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item is-unselectable" routerLink="/home">
+                        <img src="assets/ponderegg-icon-logo-1024.png" alt="ponderegg" />
+                    </a>
+                    <div class="navbar-burger burger" [class.is-active]="isShowMobileMenu" data-target="navbarBasicExample" (click)="toggleMobileMenu()">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+                </div>
+                <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isShowMobileMenu">
+                    <div class="navbar-start">
+                        <div class="navbar-item has-text-primary is-unselectable">
+                            Think it > Get feedback
+                        </div>
+                    </div>
+                    <div class="navbar-end">
+                        <div class="navbar-item is-hidden-touch" *ngIf="!isSignedIn">
+                            <div class="buttons">
+                                <a routerLink="/sign-in" class="button">
+                                    <span>Login</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="navbar-item has-dropdown is-hoverable">
+                            <a class="navbar-link is-hidden-touch is-unselectable" *ngIf="isSignedIn">
+                                {{username}}
+                                <span class="icon is-large has-text-grey">
+                                    <i class="fas fa-user"></i>
+                                </span>
+                            </a>
+        
+                            <div class="navbar-dropdown" #dropdown *ngIf="!isSignedIn">
+                                <a routerLink="/sign-up" class="navbar-item">
+                                    Sign up
+                                </a>
+                                <a routerLink="/sign-in" class="navbar-item">
+                                    Log in
+                                </a>
+                            </div>
+        
+                            <div class="navbar-dropdown" #dropdown *ngIf="isSignedIn">
+                                <a (click)="goToEditPost()" class="navbar-item">
+                                    New post
+                                </a>
+                                <hr *ngIf="isAdmin" class="navbar-divider">
+                                <a *ngIf="isAdmin" (click)="goToReportedPosts()" class="navbar-item">
+                                    Reported Posts
+                                </a>
+                                <a *ngIf="isAdmin" (click)="goToAnnouncements()" class="navbar-item">
+                                    Announcements
+                                </a>
+                                <hr class="navbar-divider">
+                                <a (click)="logout()" class="navbar-item">
+                                    Log out <span class="is-hidden-desktop">({{username}})</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </div>
+    <div class="hero-body" [class.is-full]="isFullWidth" 
+    [class.is-body-align-center]="isBodyAlignCenter" 
+    [class.is-body-align-top]="!isBodyAlignCenter"
+    [class.has-sign-up-image]="hasSignUpImage">
+        <div class="container" [class.is-full]="isFullWidth">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+    <div class="hero-foot">
+        <footer class="footer" *ngIf="isFooterVisible">
+            <div class="container">
+                <div class="content has-text-centered">
+                    <p>
+                        <strong>{{siteName}}</strong> is created by Moon 15 Ltd
+                    </p>
+                    <p>
+                        <a routerLink="/about">About</a>&nbsp;
+                        |&nbsp;
+                        <a routerLink="/terms-of-service">Terms &amp; conditions</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+</section>
+
+<app-modal></app-modal>
+<app-media-modal></app-media-modal>

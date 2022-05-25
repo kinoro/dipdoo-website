@@ -1,0 +1,19 @@
+<div class="box" style="padding: 0.75rem;">
+    <div class="level is-mobile">
+        <div class="level-left">
+            <div class="image">
+                <img [src]="getUserProfileImageUrl()" style="width: 3rem;" />
+            </div>
+            <div style="margin-left: 0.75rem;">
+                <div class="is-size-5 has-text-weight-medium" (click)="openUser()" style="cursor: pointer;">{{user.username}}</div>
+                <div>
+                    <span (click)="switchUserTabType(userTabTypes.Posts);" class="has-text-secondary" style="cursor: pointer;">{{posts}}</span>
+                    <span> • </span>
+                    <span (click)="switchUserTabType(userTabTypes.Followers);" class="has-text-secondary" style="cursor: pointer;">{{followers}}</span>
+                    <span> • </span>
+                    <span (click)="switchUserTabType(userTabTypes.Following);" class="has-text-secondary" style="cursor: pointer;">{{following}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

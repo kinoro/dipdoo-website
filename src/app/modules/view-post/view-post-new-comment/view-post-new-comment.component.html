@@ -1,0 +1,56 @@
+<div style="background-color: white;">
+
+    <div class="field is-horizontal">
+
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <textarea  class="textarea" [class.is-danger]="submitted && commentViewModel.hasErrors" rows="2"
+                        (change)="revalidate()" (keyup)="revalidate()"
+                        [(ngModel)]="commentViewModel.text" type="text"
+                        [placeholder]="textPlaceholder"></textarea>
+                </div>
+                <div *ngIf="submitted && commentViewModel.hasErrors">
+                    <p class="help is-danger"
+                        *ngIf="commentViewModel.hasErrorCode(commentViewModelErrorCodesEnum.TextMustBeCertainLength)">
+                        Text must be between {{textMinLength}} and {{textMaxLength}} characters
+                    </p>
+                    <p class="help is-danger"
+                        *ngIf="commentViewModel.hasErrorCode(commentViewModelErrorCodesEnum.TextInvalidCharacters)">
+                        Text can only contain letters, number, commas, spaces and hyphens
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="field" *ngIf="isAdmin">
+        <label class="label">Add comment as...</label>
+        <div class="control">
+            <div class="select">
+                <select [(ngModel)]="commentViewModel.username">
+                    <option *ngFor="let username of usernames"
+                        [selected]="username == commentViewModel.username">
+                        {{username}}
+                    </option>
+                </select>
+            </div>
+            <div class="button is-primary" (click)="addChildUser()"
+                style="margin-left: 0.5rem">
+                <span class="icon">
+                    <i class="fas fa-plus"></i>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="buttons">
+        <button class="button is-primary" (click)="trySave()">
+            Add Comment
+        </button>
+        <button class="button" *ngIf="parentComment != null" (click)="cancel()">
+            Cancel
+        </button>
+    </div>
+
+</div>

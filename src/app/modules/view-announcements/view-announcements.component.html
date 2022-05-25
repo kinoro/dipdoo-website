@@ -1,0 +1,43 @@
+<section class="hero is-primary is-small">
+    <div class="hero-body">
+        <div class="container">
+            <h1 class="title">
+                Announcements
+            </h1>
+            <h2 class="subtitle">
+                View and edit announcements
+            </h2>
+        </div>
+    </div>
+</section>
+<section class="hero is-light is-fullheight">
+    <div class="hero-body" style="padding-top: 1rem; align-items: initial;">
+        <div class="container">
+            <div *ngIf="!hasFailed && !hasLoaded" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span class="icon">
+                                <i class="fas fa-spinner fa-pulse"></i>
+                            </span>
+                            <span>&nbsp;Loading announcements...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="hasFailed" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span>&nbsp;Oops! Looks like there was a problem loading the announcements.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template [ngIf]="!hasFailed && hasLoaded">
+                <app-view-announcements-main-content></app-view-announcements-main-content>
+                <app-view-announcements-add></app-view-announcements-add>
+            </ng-template>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,11 @@
+{
+    "editor.detectIndentation": false,
+    "files.exclude": {
+        ".editorconfig": true,
+        "browserslist": true,
+        "e2e": true,
+        "karma.conf.js": true,
+        "node_modules": true,
+        "README.md": true
+    }
+}

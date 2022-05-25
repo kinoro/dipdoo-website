@@ -1,0 +1,26 @@
+<div *ngIf="posts.length == 0 && !isLoadingPosts" class="level">
+    <div class="level-item">
+        <div class="box">
+            <div class="box-content">
+                <span>&nbsp;There are no posts to show yet!</span>
+            </div>
+        </div>
+    </div>
+</div>
+<div *ngIf="posts.length > 0" class="columns is-multiline is-gapless">
+    <ng-template ngFor let-post [ngForOf]="posts" let-i="index">
+        <app-view-post-summary [post]="post" class="column is-one-quarter"></app-view-post-summary>
+    </ng-template>
+</div>
+<div *ngIf="isLoadingPosts" class="level">
+    <div class="level-item">
+        <div class="box">
+            <div class="box-content">
+                <span class="icon">
+                    <i class="fas fa-spinner fa-pulse"></i>
+                </span>
+                <span>&nbsp;Loading posts</span>
+            </div>
+        </div>
+    </div>
+</div>

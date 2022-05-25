@@ -1,0 +1,127 @@
+<article class="card is-rounded" *ngIf="!hasRegistered">
+    <form class="card-content" [formGroup]="form" (ngSubmit)="register()">
+        <div class="level">
+            <div class="is-size-5">Create your free account</div>
+        </div>
+
+        <div class="field">
+            <div class="control has-icons-left has-icons-right">
+                <input class="input" formControlName="email" [class.is-danger]="submitted && f.email.errors"
+                    type="email" placeholder="Email">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                </span>
+            </div>
+            <div *ngIf="submitted && f.email.errors">
+                <p class="help is-danger" *ngIf="f.email.errors.required">Email is required</p>
+                <p class="help is-danger" *ngIf="f.email.errors.email">Email is invalid</p>
+                <p class="help is-danger" *ngIf="f.email.errors.notunique">Email is already in use</p>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control has-icons-left has-icons-right">
+                <input class="input" formControlName="username" type="text" placeholder="Username"
+                    [class.is-danger]="submitted && f.username.errors">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                </span>
+            </div>
+            <div *ngIf="submitted && f.username.errors">
+                <p class="help is-danger"
+                    *ngIf="f.username.errors.required || f.username.errors.maxlength || f.username.errors.minlength">
+                    Username should be between 6 and 20 characters</p>
+                <p class="help is-danger" *ngIf="f.username.errors.pattern">
+                    Username must only contain letters/numbers</p>
+                <p class="help is-danger" *ngIf="f.username.errors.notunique">Username is already in use</p>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control has-icons-left has-icons-right">
+                <input class="input" formControlName="password" type="password" placeholder="Password"
+                    [class.is-danger]="submitted && f.password.errors">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </div>
+            <div *ngIf="submitted && f.password.errors">
+                <p class="help is-danger" *ngIf="f.password.errors.required">
+                    Password is required</p>
+                <p class="help is-danger" *ngIf="f.password.errors.minlength">
+                    Password must at least 6 characters
+                </p>
+                <p class="help is-danger" *ngIf="f.password.errors.pattern">
+                    Password must contain a lowercase character
+                </p>
+                <p class="help is-danger" *ngIf="f.password.errors.pattern">
+                    Password must contain an uppercase character
+                </p>
+                <p class="help is-danger" *ngIf="f.password.errors.pattern">
+                    Password must contain a number
+                </p>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control has-icons-left has-icons-right">
+                <input class="input" formControlName="confirmPassword" type="password" placeholder="Re-type password"
+                    [class.is-danger]="submitted && f.confirmPassword.errors">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </div>
+            <div *ngIf="submitted && f.confirmPassword.errors">
+                <p class="help is-danger" *ngIf="f.confirmPassword.errors.required">
+                    Re-type password is required</p>
+                <p class="help is-danger" *ngIf="f.confirmPassword.errors.mustMatch">
+                    Passwords must match</p>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <label class="checkbox">
+                    <input type="checkbox" formControlName="acceptTerms"
+                        [class.is-danger]="submitted && f.acceptTerms.errors">
+                    I agree to the <a routerLink="/terms-of-service">terms and conditions</a>
+                </label>
+            </div>
+            <div *ngIf="submitted && f.acceptTerms.errors">
+                <p class="help is-danger" *ngIf="f.acceptTerms.errors.required">
+                    Terms and conditions must be accepted</p>
+            </div>
+        </div>
+
+        <div class="field">
+            <div class="control">
+                <button type="submit" class="button is-primary is-fullwidth" *ngIf="!isWaiting">Sign up</button>
+                <button class="button is-primary is-fullwidth" *ngIf="isWaiting">
+                    <span class="icon">
+                        <i class="fas fa-spinner fa-pulse"></i>
+                    </span>
+                </button>
+            </div>
+            <p class="help is-danger" *ngIf="unknownError">It looks like something went wrong - please try again</p>
+        </div>
+    </form>
+</article>
+
+<div class="card is-rounded" *ngIf="hasRegistered">
+    <div class="card-header">
+        <div class="card-header-title">
+            Account created
+        </div>
+    </div>
+    <div class="card-content">
+        <div class="level">
+            <div class="level-item">
+                <span class="icon is-large has-text-success">
+                    <i class="fas fa-2x fa-check-circle"></i>
+                </span>
+                You have successfully signed up. Don't forget to confirm your email later by following the link in the email we have sent you.
+            </div>
+        </div>
+        <a class="button link" (click)="goToNextRoute()">{{nextRouteButtonText}}</a>
+    </div>
+</div>

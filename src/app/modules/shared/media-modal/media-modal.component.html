@@ -1,0 +1,13 @@
+<div class="modal" [class.is-active]="isActive" [class.mobile-padding]="!isDesktop">
+    <div class="modal-background" (click)="close()"></div>
+    <div class="modal-content" style="width: 95%; max-width:640px;">
+        <div *ngIf="service.contentType == contentTypeEnum.Image" style="display: flex; justify-content: center; align-items: center;">
+            <img [src]="service.urlForUI" alt="media image" />
+        </div>
+        <div class="video-wrapper" *ngIf="service.contentType != contentTypeEnum.Image && service.mediaType == mediaTypeEnum.YouTube">
+            <iframe width="640" height="385" [src]="service.urlForUI" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+        
+    </div>
+    <button class="modal-close is-large" aria-label="close" (click)="close();"></button>
+</div>

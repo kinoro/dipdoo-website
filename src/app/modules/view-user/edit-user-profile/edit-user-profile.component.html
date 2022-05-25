@@ -1,0 +1,64 @@
+<div class="columns is-centered">
+    <div class="column is-4">
+        <div class="box">
+            <p class="title is-size-4">General</p>
+            <div class="field">
+                <label class="label">Username</label>
+                <div class="control">
+                    <input class="input" [readonly]="true" [(ngModel)]="userAccount.username" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                    <input class="input" [readonly]="true" [(ngModel)]="userAccount.email" type="text">
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Created</label>
+                <div class="control">
+                    <input class="input" [readonly]="true" [ngModel]="createdAt" type="text">
+                </div>
+            </div>
+            <p class="title is-size-4" style="margin-top: 2rem;">Preferences</p>
+            <div class="field">
+                <label class="label">Show reported posts?</label>
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox" [(ngModel)]="userAccount.showReportedPosts">
+                    </label>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Send emails for notification summarys?</label>
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox" [(ngModel)]="userAccount.sendNotificationSummaryByEmail">
+                    </label>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Send notifications for new followers?</label>
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox" [(ngModel)]="userAccount.sendNotificationForNewFollowers">
+                    </label>
+                </div>
+            </div>
+            <div class="field">
+                <label class="label">Send notifications for new posts from people I follow?</label>
+                <div class="control">
+                    <label class="checkbox">
+                        <input type="checkbox" [(ngModel)]="userAccount.sendNotificationForNewPosts">
+                    </label>
+                </div>
+            </div>
+            <button *ngIf="!isSaved && !isSaving" class="button is-secondary" (click)="save()">Save</button>
+            <button *ngIf="!isSaved && isSaving" class="button is-secondary">Saving...</button>
+            <a *ngIf="isSaved" class="button">
+                <span class="icon has-text-success"><i class="fas fa-check-circle"></i></span>
+                <span>Saved</span>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div class="modal" [class.is-active]="isActive" [class.mobile-padding]="!isDesktop">
+    <div class="modal-background"></div>
+    <div class="modal-card" [class.is-narrow]="modalType == modalTypeEnum.Loading">
+        <header class="modal-card-head">
+            <p class="modal-card-title">
+                <span class="icon" style="margin-right: 0.75rem;" *ngIf="fa != null && fa.length > 0">
+                    <i class="fas" aria-hidden="true" [ngClass]="fa != null ? fa : ''"></i>
+                </span>
+                <span>{{title}}</span>
+            </p>
+            <button class="delete" aria-label="close" (click)="cancel()"></button>
+        </header>
+        <section class="modal-card-body">
+            <div *ngIf="modalType == modalTypeEnum.Loading" style="text-align: center;">
+                <span class="icon" *ngIf="modalType == modalTypeEnum.Loading">
+                    <i class="fas fa-spinner fa-pulse"></i>
+                </span>
+                <span [innerHTML]="text" style="margin-left: 0.5rem;"></span>
+            </div>
+            <div class="image is-4by3" *ngIf="hasImage">
+                <img [src]="imageUrl" />
+            </div>
+            <div id="modal-message" *ngIf="modalType != modalTypeEnum.Loading" [innerHTML]="text"></div>
+            <input *ngIf="modalType == modalTypeEnum.Input" [(ngModel)]="inputText" class="input" type="text" />
+        </section>
+        <footer class="modal-card-foot" *ngIf="modalType != modalTypeEnum.Loading && modalType != modalTypeEnum.Button">
+            <button *ngIf="modalType == modalTypeEnum.Input" class="button is-primary" (click)="ok()" [disabled]="!hasInputText">OK</button>
+            <button *ngIf="modalType == modalTypeEnum.Question" class="button is-primary" (click)="ok()">OK</button>
+            <button class="button" (click)="cancel()">Close</button>
+        </footer>
+        <footer class="modal-card-foot" *ngIf="modalType == modalTypeEnum.Loading" style="border: 0; padding: 0.15rem">
+        </footer>
+        <footer class="modal-card-foot" *ngIf="modalType == modalTypeEnum.Button">
+            <button *ngFor="let btn of buttons" class="button is-primary" (click)="clickButton(btn)">{{btn}}</button>
+            <button class="button" (click)="cancel()">Close</button>
+        </footer>
+    </div>
+</div>

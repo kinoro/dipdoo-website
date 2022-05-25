@@ -1,0 +1,40 @@
+<div class="card is-rounded">
+    <div class="card-header" *ngIf="state != confirmationStateEnum.Waiting">
+        <div class="card-header-title">
+            <span *ngIf="state == confirmationStateEnum.Succeeded">Email confirmed</span>
+            <span *ngIf="state == confirmationStateEnum.Failed">Email confirmation failed!</span>
+        </div>
+    </div>
+    <div class="card-content">
+        <div class="level">
+            <div class="level-item" *ngIf="state == confirmationStateEnum.Waiting">
+                <span class="icon is-large has-text-success">
+                    <i class="fas fa-2x fa-spinner fa-pulse"></i>
+                </span>
+                Confirming email...
+            </div>
+            <div class="level-item" *ngIf="state == confirmationStateEnum.Succeeded">
+                <span class="icon is-large has-text-success">
+                    <i class="fas fa-2x fa-check-circle"></i>
+                </span>
+                Please enjoy using {{siteName}}!
+            </div>
+            <div class="level-item" *ngIf="state == confirmationStateEnum.Failed">
+                <span class="icon is-large has-text-warning">
+                    <i class="fas fa-2x fa-exclamation-circle"></i>
+                </span>
+                Oops! Looks like that code isn't valid.
+            </div>
+        </div>
+        <div class="level" *ngIf="state == confirmationStateEnum.Succeeded">
+            <div class="level-item">
+                <a *ngIf="!isLoggedIn" routerLink="/sign-in" class="button">
+                    <span>Sign in</span>
+                </a>
+                <a *ngIf="isLoggedIn" routerLink="/home" class="button">
+                    <span>Continue</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

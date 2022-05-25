@@ -1,0 +1,132 @@
+<div class="is-size-5">Add New</div>
+<div style="padding: 2rem;">
+    <div class="field is-horizontal">
+        <div class="field-label is-normal">
+            <label class="label">Badge</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" [(ngModel)]="announcement.badge">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <label class="label">Title</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" [(ngModel)]="announcement.title">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <label class="label">Text</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" [(ngModel)]="announcement.text">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <label class="label">Start</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" placeholder="eg 2020-10-01T00:00:00Z" [(ngModel)]="startDate">
+                </div>
+                <div *ngIf="!canParseDate(startDate)" style="color: red">Invalid start date</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <label class="label">End</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" placeholder="eg 2020-11-01T00:00:00Z" [(ngModel)]="endDate">
+                </div>
+                <div *ngIf="!canParseDate(endDate)" style="color: red">Invalid end date</div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <label class="label">Username</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" [(ngModel)]="announcement.username">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <label class="label">PostDPId</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" [(ngModel)]="announcement.postDPId">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+            <label class="label">Link</label>
+        </div>
+        <div class="field-body">
+            <div class="field">
+                <div class="control">
+                    <input class="input" type="text" [(ngModel)]="announcement.link">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="field is-horizontal">
+        <div class="field-label">
+          <!-- Left empty for spacing -->
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <div class="control" *ngIf="!isSaving">
+              <button class="button is-primary" (click)="save()">
+                Save
+              </button>
+            </div>
+            <div *ngIf="isSaving">Saving...</div>
+          </div>
+        </div>
+      </div>
+</div>

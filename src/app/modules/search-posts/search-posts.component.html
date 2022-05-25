@@ -1,0 +1,68 @@
+<section class="hero is-primary is-small">
+    <div class="hero-body module-hero-body-padding">
+        <div class="container">
+            <div class="level is-mobile">
+                <div class="level-left">
+                    <div class="level-item">
+                        <div class="buttons">
+                            <button class="button is-primary" 
+                                (click)="switchFilter(orderByEnum.Hot)">
+                                Hot
+                            </button>
+                            <button class="button is-primary" 
+                                (click)="switchFilter(orderByEnum.MostRecent)">
+                                New
+                            </button>
+                            <button class="button is-primary" 
+                                *ngIf="isLoggedIn"
+                                (click)="switchFilter(orderByEnum.MostRecent)">
+                                Following
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="level-right">
+                    <div class="level-item">
+                        <button class="button is-secondary">
+                            <span class="icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                            <span *ngIf="isDesktop">New Post</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section class="hero is-light is-fullheight">
+    <div class="hero-body module-hero-body-padding" style="align-items: initial;">
+        <div class="container">
+            <app-search-bar></app-search-bar>
+            <div *ngIf="!hasFailed && !hasLoaded" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span class="icon">
+                                <i class="fas fa-spinner fa-pulse"></i>
+                            </span>
+                            <span *ngIf="isLoadingPosts">&nbsp;Searching...</span>
+                            <span *ngIf="!isLoadingPosts">&nbsp;Loading...</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="hasFailed" class="level">
+                <div class="level-item">
+                    <div class="box">
+                        <div class="box-content">
+                            <span *ngIf="errorMessage != null && errorMessage.length > 0">&nbsp;{{errorMessage}}</span>
+                            <span *ngIf="errorMessage == null || errorMessage.length == 0">&nbsp;Oops! Looks like there was a problem loading the results.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <ng-template [ngIf]="!hasFailed && hasLoaded">
+                <app-search-posts-main-content></app-search-posts-main-content>
+            </ng-template>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,28 @@
+<div class="box" style="padding: 0.5rem; background-color: white; margin-bottom: 0.5rem;">
+    <div class="level is-mobile">
+        <div class="level-left">
+            <div class="level-item">
+                <div class="tabs">
+                    <ul>
+                        <li class="tab" [class.is-active]="isOrderBy(orderByEnum.Hot)"><a [routerLink]="getChangeOrderByUrl(orderByEnum.Hot)">Hot</a></li>
+                        <li class="tab" [class.is-active]="isOrderBy(orderByEnum.Latest)"><a [routerLink]="getChangeOrderByUrl(orderByEnum.Latest)">Latest</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="level-item" *ngIf="hasTag">
+                <div class="tags has-addons">
+                    <a class="tag is-link is-medium" style="text-decoration: none;">{{tag}}</a>
+                    <a class="tag is-delete is-medium" (click)="removeSelectedTag()"></a>
+                  </div>
+            </div>
+        </div>
+        <div class="level-right">
+            <div class="level-item">
+                <a class="button is-secondary" routerLink="/edit-post">
+                    <span class="icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                    <span *ngIf="isDesktop">New Post</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>

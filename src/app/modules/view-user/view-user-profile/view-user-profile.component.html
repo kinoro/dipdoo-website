@@ -1,0 +1,74 @@
+<div class="columns is-centered">
+    <div class="column is-6">
+        <article class="message is-primary">
+            <div class="message-header">
+                <span>Did you know?</span>
+            </div>
+            <div class="message-body">
+                <div class="content">
+                    <ul>
+                        <li>
+                            <b>{{userAccount.username}}</b> created their account on <b>{{createdAt}}</b>
+                        </li>
+                        <li>
+                            To put it another way, that was <b>{{createdAtTimeAgo}}</b>
+                        </li>
+                        <li>
+                            So far, {{userAccount.username}} has created <span (click)="switchUserTabType(userTabTypes.Posts);" class="has-text-secondary has-text-weight-bold" style="cursor: pointer;">{{userAccount.numPosts}}</span> fantastic (maybe?) post(s) - you should check them out by visiting the <span (click)="switchUserTabType(userTabTypes.Posts);" class="has-text-secondary has-text-weight-bold" style="cursor: pointer;">Posts</span> tab
+                        </li>
+                        <li>
+                            They have also commented <b>{{userAccount.numComments}}</b> times
+                        </li>
+                        <li>
+                            They have <span (click)="switchUserTabType(userTabTypes.Followers);" class="has-text-secondary has-text-weight-bold" style="cursor: pointer;">{{userAccount.numFollowers}} follower(s)</span> 
+                        </li>
+                        <li>
+                            And, they are following <span (click)="switchUserTabType(userTabTypes.Following);" class="has-text-secondary has-text-weight-bold" style="cursor: pointer;">{{userAccount.numFollowing}} user(s)</span> 
+                        </li>
+                    </ul>
+                    <p>
+                        Congratulations for reading this useless information!
+                    </p>
+                </div>
+            </div>
+        </article>
+        <div class="box" *ngIf="isLoggedIn">
+            <div class="columns">
+                <div class="column is-9">
+                    <a *ngIf="!isFollowing && !isFollowingInProgress" (click)="follow()" class="button is-fullwidth is-secondary">Follow</a>
+                    <a *ngIf="isFollowing && !isFollowingInProgress" (click)="follow()" class="button is-fullwidth is-secondary">Stop Following</a>
+                    <a *ngIf="isFollowingInProgress" class="button is-fullwidth is-secondary">
+                        <span class="icon">
+                            <i class="fas fa-spinner fa-pulse"></i>
+                        </span>
+                    </a>
+                </div>
+                <div class="column is-3">
+                    <a *ngIf="!isBlocked" (click)="showBlockModal()" class="button is-fullwidth is-danger">Block</a>
+                    <a *ngIf="isBlocked" (click)="toggleBlocked()" class="button is-fullwidth is-success">Unblock</a>
+                </div>
+            </div>
+           
+        </div>
+    </div>
+</div>
+
+<div class="modal" [class.is-active]="isBlockModalActive">
+    <div class="modal-background"></div>
+    <div class="modal-card">
+        <header class="modal-card-head">
+            <p class="modal-card-title">Block this user?</p>
+            <button class="delete" aria-label="close" (click)="cancelBlockModal()"></button>
+        </header>
+        <section class="modal-card-body">
+            <div id="modal-message">
+                <p>You will no longer see any posts from this user.</p>
+                <p>Are you sure you wish to block this user?</p>
+            </div>
+        </section>
+        <footer class="modal-card-foot">
+            <button class="button is-secondary" (click)="toggleBlocked()">Yes, block now</button>
+            <button class="button" (click)="cancelBlockModal()">Cancel</button>
+        </footer>
+    </div>
+</div>
