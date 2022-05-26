@@ -31,25 +31,21 @@ export class AuthDataService extends DataService {
         return await this.sharedData.post<string>(`${this.authUrl}/resetPassword`, { email, token, password }, this.options(true));
     }
 
-    public async refresh(refreshToken: string): Promise<string> {
-        var url = `${this.authUrl}/refresh?refreshToken=${encodeURIComponent(refreshToken)}`;
-
-        return await this.sharedData.get<string>(url, this.options(true));
-    }
-
-    public async login(loginRequest: LoginRequest): Promise<string> {
-        return await this.sharedData.post<string>(`${this.authUrl}/login`, loginRequest, this.options(true));
-    }
-
-    public async refresh2(refreshToken: string): Promise<TokenData> {
-        var url = `${this.authUrl}/refresh2?refreshToken=${encodeURIComponent(refreshToken)}`;
-
+    public async refresh(refreshToken: string): Promise<TokenData> {
+        var url = `${this.authUrl}/auth/refresh?refreshToken=${encodeURIComponent(
+          refreshToken
+        )}`;
+    
         return await this.sharedData.get<TokenData>(url, this.options());
-    }
+      }
 
-    public async login2(loginRequest: LoginRequest): Promise<TokenData> {
-        return await this.sharedData.post<TokenData>(`${this.authUrl}/login2`, loginRequest, this.options());
-    }
+    public async login(loginRequest: LoginRequest): Promise<TokenData> {
+        return await this.sharedData.post<TokenData>(
+          `${this.authUrl}/auth`,
+          loginRequest,
+          this.options()
+        );
+      }
 
     public async cleartoken(refreshToken: string): Promise<string> {
         var url = `${this.authUrl}/cleartoken?refreshToken=${encodeURIComponent(refreshToken)}`;

@@ -16,8 +16,8 @@ export class SeoSocialShareService {
         private readonly helperService: HelperService) { }
 
     viewAny() {
-        this.setTitle("ponderEgg: think it, get feedback");
-        this.setDescription("Great for creatives looking for opinions and idea validation. Or maybe just shoppers deciding which shoes to wear...");
+        this.setTitle("Minymo | Give choices, get answers");
+        this.setDescription("Create multiple choice questions and get fast answers. Minymo is great for making a quiz, poll or survey.");
         this.setImage(null);
 
         this.metaService.removeTag(`name='og:url'`);

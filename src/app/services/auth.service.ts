@@ -35,7 +35,7 @@ export class AuthService {
 
     async loginAndLoadUserAsync(loginRequest: LoginRequest): Promise<UserAccount> {
         try {
-            var tokenData = await this.authData.login2(loginRequest);
+            var tokenData = await this.authData.login(loginRequest);
             this.sharedData.setTokenData(tokenData);
 
             await this.tryLoadUserAsync();
@@ -47,7 +47,7 @@ export class AuthService {
 
     async refreshAndLoadUserAsync(loginRequest: LoginRequest): Promise<UserAccount> {
         try {
-            var tokenData = await this.authData.refresh2(loginRequest.refreshToken);
+            var tokenData = await this.authData.refresh(loginRequest.refreshToken);
             this.sharedData.setTokenData(tokenData);
 
             await this.authData.cleartoken(loginRequest.refreshToken);
@@ -72,7 +72,7 @@ export class AuthService {
         if (!await this.tryLoadUserAsync())
         {
             if (tempTokenData != null && tempTokenData.refreshToken != null) {
-                var tokenData = await this.authData.refresh2(tempTokenData.refreshToken);
+                var tokenData = await this.authData.refresh(tempTokenData.refreshToken);
                 this.sharedData.setTokenData(tokenData);
 
                 await this.authData.cleartoken(tempTokenData.refreshToken);
