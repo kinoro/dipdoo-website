@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "minymo-website": {
+    "dipdoo-website": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -59,7 +59,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/minymo-website",
+            "outputPath": "dist/dipdoo-website",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -123,18 +123,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "minymo-website:build"
+            "browserTarget": "dipdoo-website:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "minymo-website:build:production"
+              "browserTarget": "dipdoo-website:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "minymo-website:build"
+            "browserTarget": "dipdoo-website:build"
           }
         },
         "test": {
@@ -174,18 +174,18 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "minymo-website:serve"
+            "devServerTarget": "dipdoo-website:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "minymo-website:serve:production"
+              "devServerTarget": "dipdoo-website:serve:production"
             }
           }
         }
       }
     }
   },
-  "defaultProject": "minymo-website",
+  "defaultProject": "dipdoo-website",
   "schematics": {
     "@schematics/angular:component": {
       "styleext": "scss"

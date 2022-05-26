@@ -13,7 +13,7 @@ export class LogglyService {
         this.loggly.push({
             logglyKey: 'b7a8c6ac-8286-4b1a-a06c-6b26f103b89d',
             sendConsoleErrors: false,
-            tag: 'minymo-website-logs'
+            tag: 'dipdoo-website-logs'
         });
     }
 

@@ -16,8 +16,8 @@ export class SeoSocialShareService {
         private readonly helperService: HelperService) { }
 
     viewAny() {
-        this.setTitle("Minymo | Give choices, get answers");
-        this.setDescription("Create multiple choice questions and get fast answers. Minymo is great for making a quiz, poll or survey.");
+        this.setTitle("Dipdoo | Give choices, get answers");
+        this.setDescription("Create multiple choice questions and get fast answers. Dipdoo is great for making a quiz, poll or survey.");
         this.setImage(null);
 
         this.metaService.removeTag(`name='og:url'`);
@@ -33,7 +33,7 @@ export class SeoSocialShareService {
 
         // Twitter
         this.metaService.updateTag({name: 'twitter:card', content: "summary_large_image"});
-        this.metaService.updateTag({name: 'twitter:site', content: "ponderegg.com"});
+        this.metaService.updateTag({name: 'twitter:site', content: "dipdoo.net"});
         this.metaService.updateTag({name: 'twitter:creator', content: post.username});
 
         // LinkedIn
@@ -42,7 +42,7 @@ export class SeoSocialShareService {
 
         // Facebook
         //this.metaService.updateTag({property: 'og:description', content: list.description});
-        this.metaService.updateTag({property: 'og:url', content: 'https://www.ponderegg.com/post/' + this.helperService.buildFriendlyId(post)});
+        this.metaService.updateTag({property: 'og:url', content: 'https://www.dipdoo.net/post/' + this.helperService.buildFriendlyId(post)});
         //this.metaService.updateTag({property: 'og:image', content: list.imageUrl});
         //this.metaService.updateTag({property: 'og:image:height', content: "xxx"});
         //this.metaService.updateTag({property: 'og:image:width', content: "xxx"});

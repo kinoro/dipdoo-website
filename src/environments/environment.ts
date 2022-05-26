@@ -6,7 +6,7 @@ export const environment = {
     production: false,
     authUrl: "http://localhost:8100/api/auth",  
     baseUrl: "http://localhost:8102/api",
-    awsUrl: "http://s3.eu-west-2.amazonaws.com/minymo-images-dev",
+    awsUrl: "http://s3.eu-west-2.amazonaws.com/dipdoo-images-dev",
     useTestData: false
 };
 
