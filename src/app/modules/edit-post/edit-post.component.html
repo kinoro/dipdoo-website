@@ -1,442 +1,440 @@
-<section class="hero is-fullheight disable-text-selection">
-    <div class="hero-body" style="align-items: initial;">
-        <div class="container">
+<div class="section">
+    <div class="columns is-centered">
+        <div class="column is-two-thirds">
 
-            <div class="columns is-centered" style="margin-top: 0.5rem">
-                <div class="column is-two-thirds" style="max-width: 700px;">
+            <div class="box">
 
-                    <div style="margin-bottom: 1rem">
-                        <p class="is-size-5">
-                            Basic Details
-                        </p>
-                        <p class="is-size-6">
-                            What do you want people's opinion on? Ask a question, show some art, share your vlog... it's
-                            up to you!
-                        </p>
+                <h2 class="is-size-6 has-text-weight-bold">Create new post</h2>
+                
+
+                <div style="margin-top: 2rem; margin-bottom: 1rem">
+                    <h3 class="is-size-6 has-text-secondary">
+                        Basic Details
+                    </h3>
+                    <p class="is-size-6">
+                        What do you want people's opinion on? Ask a question, show some art, link a youtube vid... it's
+                        up to you!
+                    </p>
+                </div>
+    
+                <!-- Basic Details -->
+                <article *ngIf="hasLoaded">
+    
+                    <!-- Tabs -->
+                    <div class="tabs is-boxed" style="margin-bottom: 0; ">
+                        <ul>
+                            <li [class.is-active]="basicDetails.contentType == contentTypeEnum.TextOnly">
+                                <a (click)="changeContentType(basicDetails, contentTypeEnum.TextOnly)">
+                                    <span class="icon is-small"><i class="fas fa-font" aria-hidden="true"></i></span>
+                                    <span>Title Only</span>
+                                </a>
+                            </li>
+                            <li [class.is-active]="basicDetails.contentType == contentTypeEnum.Image">
+                                <a (click)="changeContentType(basicDetails, contentTypeEnum.Image)">
+                                    <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+                                    <span>Image</span>
+                                </a>
+                            </li>
+                            <li [class.is-active]="basicDetails.contentType == contentTypeEnum.Link">
+                                <a (click)="changeContentType(basicDetails, contentTypeEnum.Link)">
+                                    <span class="icon is-small"><i class="fas fa-link" aria-hidden="true"></i></span>
+                                    <span>Link</span>
+                                </a>
+                            </li>
+                        </ul>
                     </div>
-
-                    <!-- Basic details new new -->
-                    
-
-                    <!-- Basic Details new-->
-                    <article *ngIf="hasLoaded">
-
-                        <!-- Tabs -->
-                        <div class="tabs is-boxed" style="margin-bottom: 0; margin-left: 1.5rem;">
-                            <ul>
-                                <li [class.is-active]="basicDetails.contentType == contentTypeEnum.TextOnly">
-                                    <a (click)="changeContentType(basicDetails, contentTypeEnum.TextOnly)">
-                                        <span class="icon is-small"><i class="fas fa-font" aria-hidden="true"></i></span>
-                                        <span>Title Only</span>
-                                    </a>
-                                </li>
-                                <li [class.is-active]="basicDetails.contentType == contentTypeEnum.Image">
-                                    <a (click)="changeContentType(basicDetails, contentTypeEnum.Image)">
-                                        <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-                                        <span>Image</span>
-                                    </a>
-                                </li>
-                                <li [class.is-active]="basicDetails.contentType == contentTypeEnum.Link">
-                                    <a (click)="changeContentType(basicDetails, contentTypeEnum.Link)">
-                                        <span class="icon is-small"><i class="fas fa-link" aria-hidden="true"></i></span>
-                                        <span>Link</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Form -->
-                        <div style="background-color: white; padding: 1.5rem; border-radius: .25rem;">
-
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" for="bd_title">Title</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input" id="bd_title"
-                                                [class.is-danger]="submitted && (
-                                                basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TitleMustBeCertainLength) ||
-                                                basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TitleInvalidCharacters))"
-                                                (change)="revalidate()" (keyup)="revalidate()"
-                                                [(ngModel)]="basicDetails.title" type="text"
-                                                placeholder="5-100 characters">
-                                        </div>
-                                        <div *ngIf="submitted && basicDetails.hasErrors">
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TitleMustBeCertainLength)">
-                                                Title must be between 5 and 100 characters
-                                            </p>
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TitleInvalidCharacters)">
-                                                Title can only contain letters, number, commas, spaces and hyphens
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
+    
+                    <!-- Form -->
+                    <div style="background-color: white; padding: 1.5rem; border-radius: 0rem;">
+    
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label" for="bd_title">Title</label>
                             </div>
-
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label" for="bd_details">Details</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <textarea class="textarea" id="bd_details"
-                                                [class.is-danger]="submitted && basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.DetailMustBeCertainLength)"
-                                                rows="3" (change)="revalidate()" (keyup)="revalidate()"
-                                                [(ngModel)]="basicDetails.details" type="text"
-                                                placeholder="(Optional) 0-2048 characters"></textarea>
-                                        </div>
-                                        <div *ngIf="submitted && basicDetails.hasErrors">
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.DetailMustBeCertainLength)">
-                                                Detail must be between 0 and 2048 characters
-                                            </p>
-                                        </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input" id="bd_title"
+                                            [class.is-danger]="submitted && (
+                                            basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TitleMustBeCertainLength) ||
+                                            basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TitleInvalidCharacters))"
+                                            (change)="revalidate()" (keyup)="revalidate()"
+                                            [(ngModel)]="basicDetails.title" type="text"
+                                            placeholder="5-100 characters">
                                     </div>
-                                </div>
-                            </div>
-
-                            <div class="field is-horizontal">
-                                <div class="field-label is-normal">
-                                    <label class="label">Tags</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input"
-                                                autocapitalize="none"
-                                                autocomplete="off"
-                                                autocorrect="off"
-                                                [class.is-danger]="submitted && (
-                                                    basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TooManyTags) ||
-                                                    basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidTagCharacters) ||
-                                                    basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidTagLength)
-                                                )"
-                                                (change)="revalidate()"
-                                                (keydown)="onKeyDownTags($event)"
-                                                placeholder="(Optional) eg tag1,tag2,tag3"
-                                                [(ngModel)]="basicDetails.tags" type="text">
-                                        </div>
-                                        <div *ngIf="submitted">
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TooManyTags)">
-                                                Maximum of 3 tags
-                                            </p>
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidTagCharacters)">
-                                                Tags can only contain numbers and letters
-                                            </p>
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidTagLength)">
-                                                Tags must be between 1 and 16 characters
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="field is-horizontal" *ngIf="isAdmin">
-                                <div class="field-label is-normal">
-                                    <label class="label">Publish Date</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input"
-                                                [class.is-danger]="submitted && basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.PublishDateInvalid)"
-                                                (change)="revalidate()" (keyup)="revalidate()"
-                                                [(ngModel)]="basicDetails.publishDate" type="text">
-                                        </div>
-                                        <div *ngIf="submitted && basicDetails.hasErrors">
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.PublishDateInvalid)">
-                                                Not a valid ISO date
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="field is-horizontal" *ngIf="isAdmin">
-                                <div class="field-label is-normal">
-                                    <label class="label">Username</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <div class="select">
-                                                <select [(ngModel)]="basicDetails.username">
-                                                    <option *ngFor="let username of usernames"
-                                                        [selected]="username == basicDetails.username">
-                                                        {{username}}
-                                                    </option>
-                                                </select>
-                                            </div>
-                                            <div class="button is-primary" (click)="addChildUser()"
-                                                style="margin-left: 0.5rem">
-                                                <span class="icon">
-                                                    <i class="fas fa-plus"></i>
-                                                </span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="field is-horizontal" *ngIf="basicDetails.contentType == contentTypeEnum.Image">
-                                <div class="field-label is-normal">
-                                    <label class="label">Image</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div *ngIf="basicDetails.image != null" style="width: 200px">
-                                            <div class="image is-3by2"
-                                                style="background-color: white; border: solid 1px #dbdbdb; border-radius: 4px; margin-bottom: 0.75rem; box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);">
-                                                <img [src]="basicDetails.safeResourceUrl"
-                                                    style="object-fit: contain; padding: 4px;" alt="uploaded image" />
-                                            </div>
-                                        </div>
-                                        <p class="control">
-                                            <button class="button" (click)="uploadImage(basicDetails)">
-                                                Choose image
-                                            </button>
+                                    <div *ngIf="submitted && basicDetails.hasErrors">
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TitleMustBeCertainLength)">
+                                            Title must be between 5 and 100 characters
                                         </p>
-                                        <div *ngIf="submitted && basicDetails.hasErrors">
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.ImageMissing)">
-                                                Must choose an image to upload
-                                            </p>
-                                        </div>
-                                        <div *ngIf="basicDetails.isImageTooBig">
-                                            <p class="help is-danger">
-                                                Maximum image size is {{MAX_IMAGE_SIZE_KB}}KB
-                                            </p>
-                                        </div>
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TitleInvalidCharacters)">
+                                            Title can only contain letters, number, commas, spaces and hyphens
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-
-                            <div class="field is-horizontal" *ngIf="basicDetails.contentType == contentTypeEnum.Link">
-                                <div class="field-label is-normal">
-                                    <label class="label">Url</label>
-                                </div>
-                                <div class="field-body">
-                                    <div class="field">
-                                        <div class="control">
-                                            <input class="input"
-                                                [class.is-danger]="submitted && (basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidLink) || basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.BrokenLink))"
-                                                (change)="revalidate()" (keyup)="revalidate()"
-                                                [(ngModel)]="basicDetails.contentUrl" type="text"
-                                                placeholder="Link url (eg YouTube)">
-                                        </div>
-                                        <div *ngIf="submitted && basicDetails.hasErrors">
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidLink)">
-                                                URL is invalid
-                                            </p>
-                                            <p class="help is-danger"
-                                                *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.BrokenLink)">
-                                                URL is broken
-                                            </p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
                         </div>
-                    </article>
-
-                    <!-- Feedback choices -->
-
-                    <div style="margin-top: 2rem; margin-bottom: 1rem">
-                        <p class="is-size-5">
-                            Feedback Choices (minimum 2 - maximum 6)
-                        </p>
-                        <p class="is-size-6">
-                            Perhaps a simple yes/no choice? Perhaps a bad/ok/good rating? Maybe you'd like people to
-                            choose their favourite image or video?
-                        </p>
+    
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label" for="bd_details">Details</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <textarea class="textarea" id="bd_details"
+                                            [class.is-danger]="submitted && basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.DetailMustBeCertainLength)"
+                                            rows="3" (change)="revalidate()" (keyup)="revalidate()"
+                                            [(ngModel)]="basicDetails.details" type="text"
+                                            placeholder="(Optional) 0-2048 characters"></textarea>
+                                    </div>
+                                    <div *ngIf="submitted && basicDetails.hasErrors">
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.DetailMustBeCertainLength)">
+                                            Detail must be between 0 and 2048 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="field is-horizontal">
+                            <div class="field-label is-normal">
+                                <label class="label">Tags</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input"
+                                            autocapitalize="none"
+                                            autocomplete="off"
+                                            autocorrect="off"
+                                            [class.is-danger]="submitted && (
+                                                basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TooManyTags) ||
+                                                basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidTagCharacters) ||
+                                                basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidTagLength)
+                                            )"
+                                            (change)="revalidate()"
+                                            (keydown)="onKeyDownTags($event)"
+                                            placeholder="(Optional) eg tag1,tag2,tag3"
+                                            [(ngModel)]="basicDetails.tags" type="text">
+                                    </div>
+                                    <div *ngIf="submitted">
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.TooManyTags)">
+                                            Maximum of 3 tags
+                                        </p>
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidTagCharacters)">
+                                            Tags can only contain numbers and letters
+                                        </p>
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidTagLength)">
+                                            Tags must be between 1 and 16 characters
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="field is-horizontal" *ngIf="isAdmin">
+                            <div class="field-label is-normal">
+                                <label class="label">Publish Date</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input"
+                                            [class.is-danger]="submitted && basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.PublishDateInvalid)"
+                                            (change)="revalidate()" (keyup)="revalidate()"
+                                            [(ngModel)]="basicDetails.publishDate" type="text">
+                                    </div>
+                                    <div *ngIf="submitted && basicDetails.hasErrors">
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.PublishDateInvalid)">
+                                            Not a valid ISO date
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="field is-horizontal" *ngIf="isAdmin">
+                            <div class="field-label is-normal">
+                                <label class="label">Username</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <div class="select">
+                                            <select [(ngModel)]="basicDetails.username">
+                                                <option *ngFor="let username of usernames"
+                                                    [selected]="username == basicDetails.username">
+                                                    {{username}}
+                                                </option>
+                                            </select>
+                                        </div>
+                                        <div class="button is-primary" (click)="addChildUser()"
+                                            style="margin-left: 0.5rem">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="field is-horizontal" *ngIf="basicDetails.contentType == contentTypeEnum.Image">
+                            <div class="field-label is-normal">
+                                <label class="label">Image</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div *ngIf="basicDetails.image != null" style="width: 200px">
+                                        <div class="image is-3by2"
+                                            style="background-color: white; border: solid 1px #dbdbdb; border-radius: 4px; margin-bottom: 0.75rem; box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);">
+                                            <img [src]="basicDetails.safeResourceUrl"
+                                                style="object-fit: contain; padding: 4px;" alt="uploaded image" />
+                                        </div>
+                                    </div>
+                                    <p class="control">
+                                        <button class="button" (click)="uploadImage(basicDetails)">
+                                            Choose image
+                                        </button>
+                                    </p>
+                                    <div *ngIf="submitted && basicDetails.hasErrors">
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.ImageMissing)">
+                                            Must choose an image to upload
+                                        </p>
+                                    </div>
+                                    <div *ngIf="basicDetails.isImageTooBig">
+                                        <p class="help is-danger">
+                                            Maximum image size is {{MAX_IMAGE_SIZE_KB}}KB
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                        <div class="field is-horizontal" *ngIf="basicDetails.contentType == contentTypeEnum.Link">
+                            <div class="field-label is-normal">
+                                <label class="label">Url</label>
+                            </div>
+                            <div class="field-body">
+                                <div class="field">
+                                    <div class="control">
+                                        <input class="input"
+                                            [class.is-danger]="submitted && (basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidLink) || basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.BrokenLink))"
+                                            (change)="revalidate()" (keyup)="revalidate()"
+                                            [(ngModel)]="basicDetails.contentUrl" type="text"
+                                            placeholder="Link url (eg YouTube)">
+                                    </div>
+                                    <div *ngIf="submitted && basicDetails.hasErrors">
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.InvalidLink)">
+                                            URL is invalid
+                                        </p>
+                                        <p class="help is-danger"
+                                            *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.BrokenLink)">
+                                            URL is broken
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
                     </div>
-
-                    <!-- new -->
-                    <article>
-
-                        <!-- Tabs -->
-                        <div class="tabs is-boxed" style="margin-bottom: 0; margin-left: 1.5rem;">
-                            <ul>
-                                <li [class.is-active]="basicDetails.feedbackContentType == contentTypeEnum.TextOnly">
-                                    <a (click)="changeFeedbackContentType(contentTypeEnum.TextOnly)">
-                                        <span class="icon is-small"><i class="fas fa-font" aria-hidden="true"></i></span>
-                                        <span>Title Only</span>
-                                    </a>
-                                </li>
-                                <li [class.is-active]="basicDetails.feedbackContentType == contentTypeEnum.Image">
-                                    <a (click)="changeFeedbackContentType(contentTypeEnum.Image)">
-                                        <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
-                                        <span>Image</span>
-                                    </a>
-                                </li>
-                                <li [class.is-active]="basicDetails.feedbackContentType == contentTypeEnum.Link">
-                                    <a (click)="changeFeedbackContentType(contentTypeEnum.Link)">
-                                        <span class="icon is-small"><i class="fas fa-link" aria-hidden="true"></i></span>
-                                        <span>Link</span>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <!-- Form-->
-                        <div style="background-color: white; padding: 1.5rem; border-radius: .25rem;">
-                            <div *ngFor="let feedbackChoice of feedbackChoices; let i = index"
-                                style="margin-bottom: 1rem; background-color: whitesmoke; display: flex; flex-direction: row; padding: 0.75rem;">
-                                <div style="flex-grow: 1;">
-
-                                    <div class="field is-horizontal">
-                                        <div class="field-label is-normal">
-                                            <label class="label" [attr.for]="'fo_' + i + '_text'">Text</label>
-                                        </div>
-                                        <div class="field-body">
-                                            <div class="field">
-                                                <div class="control">
-                                                    <input class="input" [id]="'fo_' + i + '_text'"
-                                                        [class.is-danger]="submitted && (feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.TextMustBeCertainLength) ||
-                                                        feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.TextInvalidCharacters))"
-                                                        type="text" (change)="revalidate()" (keyup)="revalidate()"
-                                                        [(ngModel)]="feedbackChoice.text" placeholder="1-30 characters">
-                                                </div>
-                                                <div *ngIf="submitted && feedbackChoice.hasErrors">
-                                                    <p class="help is-danger"
-                                                        *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.TextMustBeCertainLength)">
-                                                        Text must be between 1 and 30 characters
-                                                    </p>
-                                                    <p class="help is-danger"
-                                                        *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.TextInvalidCharacters)">
-                                                        Text can only contain letters, number, commas, spaces and
-                                                        hyphens
-                                                    </p>
-                                                </div>
-                                            </div>
-                                        </div>
+                </article>
+    
+                <!-- Feedback choices -->
+                <div style="margin-top: 2rem; margin-bottom: 1rem">
+                    <h3 class="is-size-6 has-text-secondary">
+                        Feedback Choices (minimum 2 - maximum 6)
+                    </h3>
+                    <p class="is-size-6">
+                        Perhaps a simple yes/no choice? Perhaps a bad/ok/good rating? Maybe you'd like people to
+                        choose their favourite image or video?
+                    </p>
+                </div>
+    
+                <!-- new -->
+                <article>
+    
+                    <!-- Tabs -->
+                    <div class="tabs is-boxed" style="margin-bottom: 0;">
+                        <ul>
+                            <li [class.is-active]="basicDetails.feedbackContentType == contentTypeEnum.TextOnly">
+                                <a (click)="changeFeedbackContentType(contentTypeEnum.TextOnly)">
+                                    <span class="icon is-small"><i class="fas fa-font" aria-hidden="true"></i></span>
+                                    <span>Title Only</span>
+                                </a>
+                            </li>
+                            <li [class.is-active]="basicDetails.feedbackContentType == contentTypeEnum.Image">
+                                <a (click)="changeFeedbackContentType(contentTypeEnum.Image)">
+                                    <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+                                    <span>Image</span>
+                                </a>
+                            </li>
+                            <li [class.is-active]="basicDetails.feedbackContentType == contentTypeEnum.Link">
+                                <a (click)="changeFeedbackContentType(contentTypeEnum.Link)">
+                                    <span class="icon is-small"><i class="fas fa-link" aria-hidden="true"></i></span>
+                                    <span>Link</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <!-- Form-->
+                    <div style="background-color: white; padding: 1.5rem; border-radius: .25rem;">
+                        <div *ngFor="let feedbackChoice of feedbackChoices; let i = index"
+                            style="margin-bottom: 1rem; background-color: whitesmoke; display: flex; flex-direction: row; padding: 0.75rem;">
+                            <div style="flex-grow: 1;">
+    
+                                <div class="field is-horizontal">
+                                    <div class="field-label is-normal">
+                                        <label class="label" [attr.for]="'fo_' + i + '_text'">Text</label>
                                     </div>
-
-                                    <div class="field is-horizontal"
-                                        *ngIf="feedbackChoice.contentType == contentTypeEnum.Link">
-                                        <div class="field-label is-normal">
-                                            <label class="label">Url</label>
-                                        </div>
-                                        <div class="field-body">
-                                            <div class="field">
-                                                <div class="control">
-                                                    <input class="input"
-                                                        [class.is-danger]="submitted && (feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.InvalidLink) || feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.BrokenLink))"
-                                                        (change)="revalidate()" (keyup)="revalidate()"
-                                                        [(ngModel)]="feedbackChoice.contentUrl" type="text"
-                                                        placeholder="Link url (eg YouTube)">
-                                                </div>
-                                                <div *ngIf="submitted && feedbackChoice.hasErrors">
-                                                    <p class="help is-danger"
-                                                        *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.InvalidLink)">
-                                                        URL is invalid
-                                                    </p>
-                                                    <p class="help is-danger"
-                                                        *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.BrokenLink)">
-                                                        URL is broken
-                                                    </p>
-                                                </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input" [id]="'fo_' + i + '_text'"
+                                                    [class.is-danger]="submitted && (feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.TextMustBeCertainLength) ||
+                                                    feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.TextInvalidCharacters))"
+                                                    type="text" (change)="revalidate()" (keyup)="revalidate()"
+                                                    [(ngModel)]="feedbackChoice.text" placeholder="1-30 characters">
                                             </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="field is-horizontal"
-                                        *ngIf="feedbackChoice.contentType == contentTypeEnum.Image">
-                                        <div class="field-label is-normal">
-                                            <label class="label">Image</label>
-                                        </div>
-                                        <div class="field-body">
-                                            <div class="field">
-                                                <div *ngIf="feedbackChoice.image != null" style="width: 200px">
-                                                    <div class="image is-3by2"
-                                                        style="background-color: white; border: solid 1px #dbdbdb; border-radius: 4px; margin-bottom: 0.75rem; box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);">
-                                                        <img [src]="feedbackChoice.safeResourceUrl"
-                                                            style="object-fit: contain; padding: 4px;" alt="uploaded image" />
-                                                    </div>
-                                                </div>
-                                                <p class="control">
-                                                    <button class="button" (click)="uploadImage(feedbackChoice)">
-                                                        Choose image
-                                                    </button>
+                                            <div *ngIf="submitted && feedbackChoice.hasErrors">
+                                                <p class="help is-danger"
+                                                    *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.TextMustBeCertainLength)">
+                                                    Text must be between 1 and 30 characters
                                                 </p>
-                                                <div *ngIf="submitted && feedbackChoice.hasErrors">
-                                                    <p class="help is-danger"
-                                                        *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.ImageMissing)">
-                                                        Must choose an image to upload
-                                                    </p>
-                                                </div>
-                                                <div *ngIf="feedbackChoice.isImageTooBig">
-                                                    <p class="help is-danger">
-                                                        Maximum image size is {{MAX_IMAGE_SIZE_KB}}KB
-                                                    </p>
-                                                </div>
+                                                <p class="help is-danger"
+                                                    *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.TextInvalidCharacters)">
+                                                    Text can only contain letters, number, commas, spaces and
+                                                    hyphens
+                                                </p>
                                             </div>
                                         </div>
                                     </div>
-
                                 </div>
-                                <button class="button is-text" (click)="deleteChoice(feedbackChoice)"
-                                    [attr.aria-label]="'btn_delete_' + i"
-                                    style="margin-left: 1rem; text-decoration: none;" [disabled]="!canDeleteChoice">
-                                    <span class="icon"><i class="fas fa-times" aria-hidden="true"></i></span>
-                                </button>
+    
+                                <div class="field is-horizontal"
+                                    *ngIf="feedbackChoice.contentType == contentTypeEnum.Link">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Url</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div class="control">
+                                                <input class="input"
+                                                    [class.is-danger]="submitted && (feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.InvalidLink) || feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.BrokenLink))"
+                                                    (change)="revalidate()" (keyup)="revalidate()"
+                                                    [(ngModel)]="feedbackChoice.contentUrl" type="text"
+                                                    placeholder="Link url (eg YouTube)">
+                                            </div>
+                                            <div *ngIf="submitted && feedbackChoice.hasErrors">
+                                                <p class="help is-danger"
+                                                    *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.InvalidLink)">
+                                                    URL is invalid
+                                                </p>
+                                                <p class="help is-danger"
+                                                    *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.BrokenLink)">
+                                                    URL is broken
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
+                                <div class="field is-horizontal"
+                                    *ngIf="feedbackChoice.contentType == contentTypeEnum.Image">
+                                    <div class="field-label is-normal">
+                                        <label class="label">Image</label>
+                                    </div>
+                                    <div class="field-body">
+                                        <div class="field">
+                                            <div *ngIf="feedbackChoice.image != null" style="width: 200px">
+                                                <div class="image is-3by2"
+                                                    style="background-color: white; border: solid 1px #dbdbdb; border-radius: 4px; margin-bottom: 0.75rem; box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);">
+                                                    <img [src]="feedbackChoice.safeResourceUrl"
+                                                        style="object-fit: contain; padding: 4px;" alt="uploaded image" />
+                                                </div>
+                                            </div>
+                                            <p class="control">
+                                                <button class="button" (click)="uploadImage(feedbackChoice)">
+                                                    Choose image
+                                                </button>
+                                            </p>
+                                            <div *ngIf="submitted && feedbackChoice.hasErrors">
+                                                <p class="help is-danger"
+                                                    *ngIf="feedbackChoice.hasErrorCode(feedbackChoiceErrorCodesEnum.ImageMissing)">
+                                                    Must choose an image to upload
+                                                </p>
+                                            </div>
+                                            <div *ngIf="feedbackChoice.isImageTooBig">
+                                                <p class="help is-danger">
+                                                    Maximum image size is {{MAX_IMAGE_SIZE_KB}}KB
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+    
                             </div>
-
-                            <div class="buttons">
-                                <button class="button" [disabled]="!canAddChoice" (click)="addChoice()">
-                                    <span class="icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
-                                    <span>Add choice</span>
-                                </button>
-                            </div>
+                            <button class="button is-text" (click)="deleteChoice(feedbackChoice)"
+                                [attr.aria-label]="'btn_delete_' + i"
+                                style="margin-left: 1rem; text-decoration: none;" [disabled]="!canDeleteChoice">
+                                <span class="icon"><i class="fas fa-times" aria-hidden="true"></i></span>
+                            </button>
                         </div>
-
-                    </article>
-
-                    <div class="buttons" style="margin-top: 2rem;">
-                        <button *ngIf="isSaving" class="button is-secondary">
-                            <span *ngIf="isDesktop" class="icon"><i class="fas fa-spinner fa-pulse"
-                                    aria-hidden="true"></i></span>
-                        </button>
-                        <button *ngIf="!isSaving" class="button is-secondary" (click)="trySave()">
-                            <span *ngIf="isDesktop" class="icon"><i class="fas fa-paper-plane"
-                                    aria-hidden="true"></i></span>
-                            <span>Submit</span>
-                        </button>
-                        <button *ngIf="!isSaving && isAdmin" class="button is-secondary" (click)="fillTestData()">
-                            <span *ngIf="isDesktop" class="icon"><i class="fas fa-paper-plane"
-                                    aria-hidden="true"></i></span>
-                            <span>Fill Test Data</span>
-                        </button>
-                        <button *ngIf="!isSaving" class="button" (click)="goHome()">
-                            <span>Cancel</span>
-                        </button>
+    
+                        <div class="buttons">
+                            <button class="button" [disabled]="!canAddChoice" (click)="addChoice()">
+                                <span class="icon"><i class="fas fa-plus" aria-hidden="true"></i></span>
+                                <span>Add choice</span>
+                            </button>
+                        </div>
                     </div>
-
-                    <div>
-                        <p class="help is-danger" *ngIf="hasSaveFailed && !hasSaveFailedSpecific" style="font-size: 1rem; margin-bottom: 1rem;">
-                            Unfortunately there was an issue with submitting the post. Please consider changing your
-                            post, or try again later.
-                        </p>
-                        <p class="help is-danger" *ngIf="hasSaveFailed && hasSaveFailed429" style="font-size: 1rem; margin-bottom: 1rem;">
-                            You are doing that too often. Please try again in 15 minutes.
-                        </p>
-                    </div>
+    
+                </article>
+    
+                <div class="buttons" style="margin-top: 2rem;">
+                    <button *ngIf="isSaving" class="button is-secondary">
+                        <span *ngIf="isDesktop" class="icon"><i class="fas fa-spinner fa-pulse"
+                                aria-hidden="true"></i></span>
+                    </button>
+                    <button *ngIf="!isSaving" class="button is-secondary" (click)="trySave()">
+                        <span *ngIf="isDesktop" class="icon"><i class="fas fa-paper-plane"
+                                aria-hidden="true"></i></span>
+                        <span>Submit</span>
+                    </button>
+                    <button *ngIf="!isSaving && isAdmin" class="button is-secondary" (click)="fillTestData()">
+                        <span *ngIf="isDesktop" class="icon"><i class="fas fa-paper-plane"
+                                aria-hidden="true"></i></span>
+                        <span>Fill Test Data</span>
+                    </button>
+                    <button *ngIf="!isSaving" class="button" (click)="goHome()">
+                        <span>Cancel</span>
+                    </button>
+                </div>
+    
+                <div>
+                    <p class="help is-danger" *ngIf="hasSaveFailed && !hasSaveFailedSpecific" style="font-size: 1rem; margin-bottom: 1rem;">
+                        Unfortunately there was an issue with submitting the post. Please consider changing your
+                        post, or try again later.
+                    </p>
+                    <p class="help is-danger" *ngIf="hasSaveFailed && hasSaveFailed429" style="font-size: 1rem; margin-bottom: 1rem;">
+                        You are doing that too often. Please try again in 15 minutes.
+                    </p>
                 </div>
             </div>
+
         </div>
     </div>
-</section>
+</div>
 
 <input type="file" (change)="onFileUploadChanged()" #fileInput accept="image/x-png,image/gif,image/jpeg"
     style="display: none;" />

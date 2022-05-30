@@ -19,8 +19,22 @@ $card-header-color: whitesmoke;
 /* Tabs */
 $tabs-link-active-color: $primary;
 $tabs-link-active-border-bottom-color: $primary;
-$tabs-link-padding: 0rem 0.5rem;
-$tabs-border-bottom-style: none;
+//$tabs-border-bottom-style: none;
+.tabs.is-borderless {
+    ul {
+        border-bottom-style: none;
+    }
+
+    ul li a {
+        border-bottom-style: none;
+    }
+}
+.tabs.is-paddingless {
+    ul li a {
+        padding: 0rem 0.5rem;
+    }
+}
+
 
 /* Navbar */
 //$navbar-breakpoint: $tablet;
