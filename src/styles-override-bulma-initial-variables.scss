@@ -1,0 +1,35 @@
+//$primary: #414581;
+//$secondary: #ee6952;
+$primary: #FF4F00;
+$danger: #e6001b;
+
+$secondary: #0C5AA6;
+$secondary-invert: findColorInvert($secondary);
+$custom-colors: ("secondary": ($secondary, $secondary-invert));
+
+$primary-dark: darken($primary, 10%);
+$primary-darker: darken($primary, 20%);
+$primary-light: lighten($primary, 10%);
+$primary-lighter: lighten($primary, 20%);
+
+$secondary-dark: darken($secondary, 10%);
+$secondary-darker: darken($secondary, 20%);
+$secondary-light: lighten($secondary, 10%);
+$secondary-lighter: lighten($secondary, 20%);
+
+$primary-dark-invert: findColorInvert($primary-dark);
+$primary-light-invert: findColorInvert($primary-light);
+$primary-darker-invert: findColorInvert($primary-darker);
+$primary-lighter-invert: findColorInvert($primary-lighter);
+$secondary-invert: findColorInvert($secondary);
+$secondary-dark-invert: findColorInvert($secondary-dark);
+$secondary-light-invert: findColorInvert($secondary-light);
+$secondary-darker-invert: findColorInvert($secondary-darker);
+$secondary-lighter-invert: findColorInvert($secondary-lighter);
+
+$body-background-color: $grey-lighter;
+//$body-size: 16px !default;
+
+$radius: 2px;
+$radius-small: 1px;
+$radius-large: 3px; 

@@ -1,77 +1,78 @@
 @import "initial-variables";
 @import "functions";
-
-/*
-$primary: #0076D1 !default;
-$primary-dark: #00579a !default;
-$primary-light: #0793ff !default;
-$primary-darker: #004579 !default;
-$primary-lighter: #1e9bff !default;
-*/
-$primary: #FF4F00 !default;
-$primary-dark: #C63E00 !default;
-$primary-light: #FF7739 !default;
-$primary-darker: #9B3000 !default;
-$primary-lighter: #FF9464 !default;
-
-
-$secondary: #FF4F00 !default;
-$secondary-dark: #C63E00 !default;
-$secondary-light: #FF7739 !default;
-$secondary-darker: #9B3000 !default;
-$secondary-lighter: #FF9464 !default;
-
-$tabs-link-active-color: $primary;
-$tabs-link-active-border-bottom-color: $primary;
-
-$size-modifier: 1;
-$size-1: $size-1 * $size-modifier;
-$size-2: $size-2 * $size-modifier;
-$size-3: $size-3 * $size-modifier;
-$size-4: $size-4 * $size-modifier;
-$size-5: $size-5 * $size-modifier;
-$size-6: $size-6 * $size-modifier;
-$size-7: $size-7 * $size-modifier;
-
-$primary-dark-invert: findColorInvert($primary-dark) !default;
-$primary-light-invert: findColorInvert($primary-light) !default;
-$primary-darker-invert: findColorInvert($primary-darker) !default;
-$primary-lighter-invert: findColorInvert($primary-lighter) !default;
-$secondary-invert: findColorInvert($secondary) !default;
-$secondary-dark-invert: findColorInvert($secondary-dark) !default;
-$secondary-light-invert: findColorInvert($secondary-light) !default;
-$secondary-darker-invert: findColorInvert($secondary-darker) !default;
-$secondary-lighter-invert: findColorInvert($secondary-lighter) !default;
-
-$custom-colors: (
-    "primary-dark": ($primary-dark, $primary-dark-invert),
-    "primary-light": ($primary-light, $primary-light-invert),
-    "primary-darker": ($primary-darker, $primary-darker-invert),
-    "primary-lighter": ($primary-lighter, $primary-lighter-invert),
-    "secondary": ($secondary, $secondary-invert),
-    "secondary-dark": ($secondary-dark, $secondary-dark-invert),
-    "secondary-light": ($secondary-light, $secondary-light-invert),
-    "secondary-darker": ($secondary-darker, $secondary-darker-invert),
-    "secondary-lighter": ($secondary-lighter, $secondary-lighter-invert),
-);
-
-.background-primary-lighter {
-    background-color: $primary-lighter;
-}
+@import "styles-override-bulma-initial-variables.scss";
+@import "derived-variables";
+@import "mixins";
 
 $body-size:14px;
-$navbar-height: 4rem;
-$box-padding: 1.25rem;
+$hero-body-padding: 0.5rem;
 //$tag-background-color: $primary;
 //$tag-color: white;
 $card-header-background-color: $primary;
 $card-header-color: whitesmoke;
+
+/* Tabs */
+$tabs-link-active-color: $primary;
+$tabs-link-active-border-bottom-color: $primary;
+$tabs-link-padding: 0rem 0.5rem;
+
+/* Navbar */
+//$navbar-breakpoint: $tablet;
+//$navbar-height: 2rem;
+/*
+$navbar-box-shadow-size: 0 2px 4px 0;
+$navbar-box-shadow-color: $grey-lighter;
+*/
+.navbar-item {
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+$navbar-small-height: 1.75rem !default;
+.navbar.is-small {
+  min-height: $navbar-small-height;
+
+  & > .container {
+    min-height: $navbar-small-height;
+  }
+  .navbar-brand,
+  .navbar-tabs {
+    min-height: $navbar-small-height;
+  }
+  .navbar-burger {
+    @include hamburger($navbar-small-height);
+  }
+  .navbar-item,
+  .navbar-link {
+    padding: 0rem 1rem;
+  }
+  .navbar-item {
+    &.is-tab {
+      min-height: $navbar-small-height;
+    }
+  }
+  @include desktop {
+    .navbar {
+      min-height: $navbar-small-height;
+    }
+  }
+}
+
+/* Box */
+$box-padding: 1.25rem;
+$box-radius: 0;
+.box {
+    box-shadow: none !important;
+}
+
+/* Modal */
 $modal-card-head-background-color: $primary;
 $modal-card-title-color: whitesmoke;
 .modal-card-foot {
     background-color: white !important;
 }
 
+/* Helper classes */
 .has-background-primary {
     background-color: $primary;
 }
@@ -144,10 +145,6 @@ $modal-card-title-color: whitesmoke;
     &.is-light {
         //background-color: darkslategray !important;
     }
-}
-
-.module-hero-body-padding {
-    padding: 0.5rem !important;
 }
 
 @import "bulma";

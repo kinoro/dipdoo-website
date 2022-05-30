@@ -1,56 +1,55 @@
 <section class="hero is-fullheight">
-    <div class="hero-body module-hero-body-padding" style="align-items: initial;">
-        <div class="container">
+    <div class="hero-body" style="align-items: initial;">
+        <div class="columns is-centered" style="width: 100%;">
+            <div class="column is-two-thirds">
+                <app-view-posts-topbar></app-view-posts-topbar>
 
-            <app-view-posts-topbar></app-view-posts-topbar>
-
-
-            <div class="box">
-                <!-- posts -->
-                <app-view-posts-post *ngFor="let post of posts; let i = index" [post]="post" [ordinal]="i + 1">
-                </app-view-posts-post>
-                <div *ngIf="hasLoaded && posts.length == 0" style="margin:2rem; text-align: center;">
-                    There are no posts to show yet
-                </div>
-                <div *ngIf="hasLoaded" class="buttons" style="margin-top: 1rem;">
-                    <button class="button" *ngIf="canLoadMore && !isLoadingMore" (click)="loadMore()">Show more</button>
-                    <button class="button" *ngIf="isLoadingMore">Loading...</button>
-                </div>
-
-                <!-- loading -->
-                <div *ngIf="!hasFailed && !hasLoaded" class="level">
-                    <div class="level-item">
-                        <div>
-                            <span class="icon">
-                                <i class="fas fa-spinner fa-pulse"></i>
-                            </span>
-                            <span>&nbsp;Loading posts...</span>
+                <div class="box">
+                    <!-- posts -->
+                    <app-view-posts-post *ngFor="let post of posts; let i = index" [post]="post" [ordinal]="i + 1">
+                    </app-view-posts-post>
+                    <div *ngIf="hasLoaded && posts.length == 0" style="margin:2rem; text-align: center;">
+                        There are no posts to show yet
+                    </div>
+                    <div *ngIf="hasLoaded" class="buttons" style="margin-top: 1rem;">
+                        <button class="button" *ngIf="canLoadMore && !isLoadingMore" (click)="loadMore()">Show more</button>
+                        <button class="button" *ngIf="isLoadingMore">Loading...</button>
+                    </div>
+    
+                    <!-- loading -->
+                    <div *ngIf="!hasFailed && !hasLoaded" class="level">
+                        <div class="level-item">
+                            <div>
+                                <span class="icon">
+                                    <i class="fas fa-spinner fa-pulse"></i>
+                                </span>
+                                <span>&nbsp;Loading posts...</span>
+                            </div>
                         </div>
                     </div>
-                </div>
-
-                <!-- load failed -->
-                <div *ngIf="hasFailed" class="level">
-                    <div class="level-item">
-                        <div>
-                            <span *ngIf="!isServerUnavailable">Oops! Looks like there was a problem loading the
-                                posts.</span>
-                            <div *ngIf="isServerUnavailable" class="content">
-                                <p>We are busy adding new features and will be back very soon!</p>
-                                <p>While you wait, perhaps you might like to check out these completely *unrelated
-                                    links:</p>
-                                <ul>
-                                    <li><a href="https://www.drawpool.com">www.drawpool.com</a></li>
-                                    <li><a href="http://onelink.to/qb2rw2">Hello Human (iOS/Android).</a></li>
-                                </ul>
-                                <p class="is-size-7">*may be slightly related to the creator of Dipdoo
-                                </p>
+    
+                    <!-- load failed -->
+                    <div *ngIf="hasFailed" class="level">
+                        <div class="level-item">
+                            <div>
+                                <span *ngIf="!isServerUnavailable">Oops! Looks like there was a problem loading the
+                                    posts.</span>
+                                <div *ngIf="isServerUnavailable" class="content">
+                                    <p>We are busy adding new features and will be back very soon!</p>
+                                    <p>While you wait, perhaps you might like to check out these completely *unrelated
+                                        links:</p>
+                                    <ul>
+                                        <li><a href="https://www.drawpool.com">www.drawpool.com</a></li>
+                                        <li><a href="http://onelink.to/qb2rw2">Hello Human (iOS/Android).</a></li>
+                                    </ul>
+                                    <p class="is-size-7">*may be slightly related to the creator of Dipdoo
+                                    </p>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
 </section>

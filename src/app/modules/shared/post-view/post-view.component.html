@@ -25,20 +25,29 @@
         <!-- title and sub details -->
         <div style="display: flex; flex-direction: column; justify-content: center; margin-left: 8px;">
             <div>
-                <a *ngIf="allowLinkToPost" class="post-title" [routerLink]='postLink'>{{post.title}}</a>
-                <span *ngIf="!allowLinkToPost">{{post.title}}</span>
+                <a *ngIf="allowLinkToPost" class="post-title has-text-weight-medium" [routerLink]='postLink'>{{post.title}}</a>
+                <span *ngIf="!allowLinkToPost" class="post-title has-text-weight-medium">{{post.title}}</span>
+
+                <!-- Tags (desktop)-->
+                <!--
                 <ng-template [ngIf]="isDesktop">
                     <a class="tag is-link" *ngFor="let tag of tagsArray" style="margin: 0px 3px;"
                         (click)="selectTag(tag)">{{tag}}</a>
                 </ng-template>
+                -->
 
                 <span *ngIf="post.linkUrl != null && isDesktop" class="is-size-7 has-text-grey-light"
                     style="padding-left: 10px">({{post.linkUrl}})</span>
             </div>
+
+            <!-- Tags (mobile) -->
+            <!--
             <div *ngIf="!isDesktop" style="margin-left: -3px;">
                 <a class="tag is-link" *ngFor="let tag of tagsArray" style="margin: 0px 3px;"
                     (click)="selectTag(tag)">{{tag}}</a>
             </div>
+            -->
+
             <div class="has-text-grey-light">
                 <span>{{getNumVotesText(post.numVotes)}} •&nbsp;</span>
                 <span [class.link-button]="allowLinkToPost"

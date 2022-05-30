@@ -17,7 +17,7 @@ export class AppService {
     siteName: string = "Dipdoo";
     tagTitle: string = "Dipdoo";
     tagDescription: string = "Multi choice for the masses";
-    tagImage: string = this.resolveAsset("dipdoo-icon-logo-1024.png");
+    tagImage: string = this.resolveAsset("icon-logo-1024.png");
     tagUrl: string = "https://www.dipdoo.net";
     tagTwitterCard: string = "summary_large_image";
     isTopVisible: boolean = true;
