@@ -89,6 +89,7 @@ export class PostViewComponent implements OnInit {
     get isDesktop() { return this.appService.isDesktop; }
     get countOptions() { return this.post.options.length; }
     get isAdminOrOwner() { return this.appService.isSignedIn && (this.authService.userAccount.isAdmin || this.post.userAccountId == this.authService.userAccount.id); }
+    get imageUrl() { return this.post.imageUrl != null ? this.post.imageUrl : `assets/icon-blue-faded-512.png`; }
 
     constructor(private appService: AppService,
         private mediaModalService: MediaModalService,

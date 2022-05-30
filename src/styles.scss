@@ -4,6 +4,11 @@
 @import "derived-variables";
 @import "mixins";
 
+html,
+body {
+  overflow-x: hidden;
+}
+
 $body-size:14px;
 $hero-body-padding: 0.5rem;
 //$tag-background-color: $primary;

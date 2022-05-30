@@ -1,21 +1,21 @@
 <!-- header -->
-<div class="disable-text-selection" style="background-color: white;">
+<div class="disable-text-selection" style="background-color: white; min-height: 40px">
     <div style="display: flex;">
 
 
         <!-- image -->
-        <figure *ngIf="post.imageUrl != null && getMediaType(post.linkUrl) == mediaTypeEnum.Unknown"
+        <figure *ngIf="imageUrl != null && getMediaType(post.linkUrl) == mediaTypeEnum.Unknown"
             class="image is-32x32"
-            style="margin: 8px 0 8px 8px; min-width: 32px; min-height:32px; cursor: pointer; overflow: hidden"
+            style="margin: 0px 0 0px 8px; min-width: 32px; min-height:32px; cursor: pointer; overflow: hidden; align-self: center;"
             (click)="showMediaForPost()">
-            <img [src]="post.imageUrl" alt="post image">
+            <img [src]="imageUrl" alt="post image" style="height: 100%; object-fit: contain">
         </figure>
-        <figure *ngIf="post.imageUrl != null && getMediaType(post.linkUrl) == mediaTypeEnum.YouTube"
+        <figure *ngIf="imageUrl != null && getMediaType(post.linkUrl) == mediaTypeEnum.YouTube"
             class="image is-32x32"
-            style="display: grid; margin: 8px 0 8px 8px; min-width: 32px; min-height:32px; cursor: pointer; overflow: hidden"
+            style="display: grid; margin: 0px 0 0px 8px; min-width: 32px; min-height:32px; cursor: pointer; overflow: hidden; align-self: center;"
             (click)="showMediaForPost()">
-            <img [src]="post.imageUrl" alt="post image">
-            <div style="position: absolute; justify-self: center;">
+            <img [src]="imageUrl" alt="post image" style="height: 100%; object-fit: contain">
+            <div style="position: absolute; justify-self: center; align-self: center;">
                 <div class="icon is-small has-text-white">
                     <i class="fas fa-play"></i>
                 </div>
@@ -25,8 +25,8 @@
         <!-- title and sub details -->
         <div style="display: flex; flex-direction: column; justify-content: center; margin-left: 8px;">
             <div>
-                <a *ngIf="allowLinkToPost" class="post-title has-text-weight-medium" [routerLink]='postLink'>{{post.title}}</a>
-                <span *ngIf="!allowLinkToPost" class="post-title has-text-weight-medium">{{post.title}}</span>
+                <a *ngIf="allowLinkToPost" class="post-title" [class.has-text-weight-medium]="!hasVotedOnPost" [routerLink]='postLink'>{{post.title}}</a>
+                <span *ngIf="!allowLinkToPost" class="post-title" [class.has-text-weight-medium]="!hasVotedOnPost">{{post.title}}</span>
 
                 <!-- Tags (desktop)-->
                 <!--

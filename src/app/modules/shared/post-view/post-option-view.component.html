@@ -1,5 +1,5 @@
-<a [class.is-not-checked]="!option.hasUserVoted && hasVotedOnPost" style="width: 100%; height: 100%;">
-    <a class="button is-fullwidth" [class.is-secondary2]="option.hasUserVoted && hasVotedOnPost" (click)="vote(option)"
+<a [class.is-not-checked]="!option.hasUserVoted" style="width: 100%; height: 100%;">
+    <a class="button is-fullwidth" [class.is-info2]="option.hasUserVoted && hasVotedOnPost" [class.is-outlined2]="option.hasUserVoted && hasVotedOnPost"  (click)="vote(option)"
     style="padding: 0">
 
         <!-- Image -->
