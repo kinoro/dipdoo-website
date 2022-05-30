@@ -3,7 +3,7 @@
         <div class="column is-two-thirds">
             <app-view-posts-topbar></app-view-posts-topbar>
     
-            <div class="box" style="padding: 1rem;">
+            <div class="box" style="padding: 0.5rem 1rem 1rem;">
                 <!-- posts -->
                 <app-view-posts-post *ngFor="let post of posts; let i = index" [post]="post" [ordinal]="i + 1">
                 </app-view-posts-post>
