@@ -47,11 +47,11 @@ import { EventService } from 'src/app/services/event.service';
         .clickable {
             cursor: pointer;
         }
-/*
+
         .post-title {
-            color: black;
+            color: unset;
         }
-*/
+
         .post-title:hover {
             text-decoration: underline;
         }

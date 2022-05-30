@@ -15,6 +15,7 @@ $card-header-color: whitesmoke;
 $tabs-link-active-color: $primary;
 $tabs-link-active-border-bottom-color: $primary;
 $tabs-link-padding: 0rem 0.5rem;
+$tabs-border-bottom-style: none;
 
 /* Navbar */
 //$navbar-breakpoint: $tablet;
@@ -57,6 +58,9 @@ $navbar-small-height: 1.75rem !default;
     }
   }
 }
+
+/* Section */
+$section-padding: 0.5rem 0.25rem;
 
 /* Box */
 $box-padding: 1.25rem;
