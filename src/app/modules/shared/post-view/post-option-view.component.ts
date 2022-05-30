@@ -20,7 +20,7 @@ import { ImageHelperService } from 'src/app/services/image-helper-service';
     templateUrl: './post-option-view.component.html',
     styles: [`
         .is-not-checked {
-            opacity: 0.3;
+            opacity: 0.35;
         }
 
         .box {

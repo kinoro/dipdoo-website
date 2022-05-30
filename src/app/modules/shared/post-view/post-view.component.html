@@ -24,7 +24,7 @@
 
         <!-- title and sub details -->
         <div style="display: flex; flex-direction: column; justify-content: center; margin-left: 8px;">
-            <div>
+            <div style="display: flex; align-items: center;">
                 <a *ngIf="allowLinkToPost" class="post-title" [class.has-text-weight-medium]="!hasVotedOnPost" [routerLink]='postLink'>{{post.title}}</a>
                 <span *ngIf="!allowLinkToPost" class="post-title" [class.has-text-weight-medium]="!hasVotedOnPost">{{post.title}}</span>
 
@@ -36,7 +36,7 @@
                 </ng-template>
                 -->
 
-                <span *ngIf="post.linkUrl != null && isDesktop" class="is-size-7 has-text-grey-light"
+                <span *ngIf="post.linkUrl != null && isDesktop" class="is-size-7 has-text-grey-dark"
                     style="padding-left: 10px">({{post.linkUrl}})</span>
             </div>
 
