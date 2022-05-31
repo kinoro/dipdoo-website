@@ -106,6 +106,13 @@ $footer-background-color: transparent;
 $footer-padding: 2rem 1.5rem 2rem;
 
 /* Helper classes */
+app-view-posts-post {
+    display: block;
+    &:not(:last-child) {
+        margin-bottom: 0.5rem;
+    }
+}
+
 .votes-subtext {
     @extend .is-size-7;
     color: black;
