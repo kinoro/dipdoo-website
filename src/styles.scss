@@ -106,6 +106,33 @@ $footer-background-color: transparent;
 $footer-padding: 2rem 1.5rem 2rem;
 
 /* Helper classes */
+.votes-subtext {
+    @extend .is-size-7;
+    color: black;
+}
+
+.is-post-voted-option-not-voted {
+    opacity: 0.35;
+}
+
+.is-post-voted-option-voted { 
+    opacity: 0.35;
+
+    .button {
+        @extend .has-text-primary;
+    }
+
+    .votes-subtext {
+        @extend .has-text-primary;
+    }
+}
+
+.is-post-not-voted {
+    .votes-subtext {
+        color: white;
+    }
+}
+
 .has-background-primary {
     background-color: $primary;
 }

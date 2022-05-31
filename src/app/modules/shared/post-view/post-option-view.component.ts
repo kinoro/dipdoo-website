@@ -1,68 +1,21 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter, Input, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, ElementRef, ViewChild } from '@angular/core';
 import { MediaType } from 'src/app/models/media-type';
 import { Post, PostOption } from 'src/app/models/post';
 import { AppService } from 'src/app/services/app.service';
-import { SearchPostsService } from 'src/app/services/search-posts.service';
-import { TagService, TagValidity } from 'src/app/services/tag.service';
 import { UrlParsingService } from 'src/app/services/url-parsing.service';
 import { MediaModalService } from 'src/app/services/media-modal.service';
 import { ContentType } from 'src/app/models/content-type';
-import { ViewPostsService } from 'src/app/services/view-posts.service';
 import { Vote } from 'src/app/models/vote';
 import { VoteDataService } from 'src/app/data/vote-data.service';
 import { AuthService } from 'src/app/services/auth.service';
 import { CheckLoggedInService } from 'src/app/services/check-logged-in.service';
-import { PostsDataService } from 'src/app/data/posts-data.service';
 import { ImageHelperService } from 'src/app/services/image-helper-service';
+import { HelperService } from 'src/app/services/helper-service';
 
 @Component({
     selector: 'div[app-post-option-view]',
     templateUrl: './post-option-view.component.html',
-    styles: [`
-        .is-not-checked {
-            opacity: 0.35;
-        }
-
-        .box {
-            padding: 1rem 1rem 0.75rem 1rem;
-        }
-
-        img.is-portrait {
-            height: 95% !important;
-            width: auto !important;
-            margin: auto;
-        }
-
-        img.is-landscape {
-            height: auto !important;
-            width: 95% !important;
-            margin: auto;
-        }
-
-        .image-container {
-            cursor: pointer;
-            text-align: center !important;
-            margin: 0 0.5rem 0.5rem 0.5rem;
-        }
-
-        .curved-top-border {
-            border-top-left-radius: 0.25rem !important;
-            border-top-right-radius: 0.25rem !important;
-        }
-
-        .curved-bottom-border {
-            border-bottom-left-radius: 0.25rem !important;
-            border-bottom-right-radius: 0.25rem !important;
-        }
-
-        .text-with-image {
-            margin-bottom: 2px !important;
-        }
-
-        .margin-top {
-            margin-top: 0.5rem;
-        }
-    `]
+    styles: [``]
 })
 export class PostOptionViewComponent {
 
@@ -74,15 +27,19 @@ export class PostOptionViewComponent {
     isMediaModalActive: boolean;
     hasReported: boolean;
 
+    get isPostVotedOptionVoted() { return this.post.hasUserVoted == true && this.option.hasUserVoted == true; }
+    get isPostVotedOptionNotVoted() { return this.post.hasUserVoted == true && this.option.hasUserVoted != true; }
+    get isPostNotVoted() { return this.post.hasUserVoted != true; }
     get hasVotedOnPost() { return this.post.hasUserVoted == true; }
     get isDesktop() { return this.appService.isDesktop; }
     get isAdminOrOwner() { return this.appService.isSignedIn && (this.authService.userAccount.isAdmin || this.post.userAccountId == this.authService.userAccount.id); }
-
+    get votesAsPercentage() { return this.helperService.round((this.option.numVotes / this.post.numVotes) * 100, 1); }
     constructor(private appService: AppService,
         private mediaModalService: MediaModalService,
         private urlParsingService: UrlParsingService,
         private voteData: VoteDataService,
         private authService: AuthService,
+        private helperService: HelperService,
         private checkLoggedInService: CheckLoggedInService,
         private imageHelperService: ImageHelperService,) { }
 

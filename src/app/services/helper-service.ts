@@ -16,6 +16,11 @@ export class HelperService {
         return `${titlePortion}-${post.id}`;
     }
 
+    round(value, precision) {
+        var multiplier = Math.pow(10, precision || 0);
+        return Math.round(value * multiplier) / multiplier;
+    }
+
     copyToClipboard(text) {
         if (
           (window as any).clipboardData &&

@@ -1,5 +1,6 @@
-<a [class.is-not-checked]="!option.hasUserVoted" style="width: 100%; height: 100%;">
-    <a class="button is-fullwidth" [class.is-info2]="option.hasUserVoted && hasVotedOnPost" [class.is-outlined2]="option.hasUserVoted && hasVotedOnPost"  (click)="vote(option)"
+<a [class.is-post-voted-option-not-voted]="isPostVotedOptionNotVoted" [class.is-post-voted-option-voted]="isPostVotedOptionVoted" 
+    [class.is-post-not-voted]="isPostNotVoted" style="width: 100%; height: 100%;">
+    <a class="button is-fullwidth"  (click)="vote(option)"
     style="padding: 0">
 
         <!-- Image -->
@@ -31,7 +32,7 @@
     </a>
     
     <!-- Votes -->
-    <div class="is-size-7" [class.has-text-white]="!hasVotedOnPost" style="display: flex; flex-direction: row; margin: 0 .5rem 0rem .5rem; flex-grow: 0; flex-shrink: 1; justify-content: center;">
-        {{option.numVotes}}<span *ngIf="isDesktop">&nbsp;votes</span>
+    <div class="is-size-7" class="votes-subtext" style="display: flex; flex-direction: row; margin: 0 .5rem 0rem .5rem; flex-grow: 0; flex-shrink: 1; justify-content: center;">
+        {{votesAsPercentage}}%
     </div>
 </a>

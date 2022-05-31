@@ -183,7 +183,7 @@ export class SharedDataService {
           var refreshToken = this.tokenData.refreshToken;
           var url = `${
             this.authUrl
-          }/auth/refresh?refreshToken=${encodeURIComponent(refreshToken)}`;
+          }/refresh?refreshToken=${encodeURIComponent(refreshToken)}`;
           var newTokenData = await this.get<TokenData>(
             url,
             this.options(false, false)
@@ -195,7 +195,7 @@ export class SharedDataService {
             // clear the token
             url = `${
               this.authUrl
-            }/auth/cleartoken?refreshToken=${encodeURIComponent(refreshToken)}`;
+            }/cleartoken?refreshToken=${encodeURIComponent(refreshToken)}`;
             await this.get<string>(url, this.options(true, false));
 
             return true;

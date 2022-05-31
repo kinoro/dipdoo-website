@@ -32,7 +32,7 @@ export class AuthDataService extends DataService {
     }
 
     public async refresh(refreshToken: string): Promise<TokenData> {
-        var url = `${this.authUrl}/auth/refresh?refreshToken=${encodeURIComponent(
+        var url = `${this.authUrl}/refresh?refreshToken=${encodeURIComponent(
           refreshToken
         )}`;
     
