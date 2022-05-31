@@ -37,6 +37,8 @@ $tabs-link-active-border-bottom-color: $primary;
 
 
 /* Navbar */
+$navbar-box-shadow-size: 0 1px 0 0;
+$navbar-box-shadow-color: #dbdbdb;
 //$navbar-breakpoint: $tablet;
 //$navbar-height: 2rem;
 /*
@@ -83,9 +85,13 @@ $section-padding: 0.5rem 0.25rem;
 
 /* Box */
 $box-padding: 1.25rem;
-$box-radius: 0;
+$box-radius: 0.125rem;
 .box {
-    box-shadow: none !important;
+    box-shadow: 0 0 0 0.75px #dbdbdb !important;
+
+    &:not(:last-child) {
+        margin-bottom: 0.5rem !important;
+    }
 }
 
 /* Modal */

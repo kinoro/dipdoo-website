@@ -1,6 +1,6 @@
-<section class="hero is-fullheight">
-    <div class="hero-body" style="align-items: initial;">
-        <div class="container">
+<section class="section">
+    <div class="columns is-centered">
+        <div class="column is-two-thirds">
             <div *ngIf="!hasFailed && !hasLoaded" class="level">
                 <div class="level-item">
                     <div class="box">
@@ -30,14 +30,10 @@
                     *ngIf="post.details != null && post.details.length > 0">
                     <div style="background-color: white; padding: 0rem 1rem 0rem 0rem; margin-top: 0.5rem;" [innerText]="getProcessedText(post.details)"></div>
                 </div>
-            </div>
-            <div *ngIf="!hasFailed && hasLoaded" class="box">
 
                 <!-- Comments -->
-                <div style="margin-bottom: 1rem">
-                    <p class="is-size-5">
-                        Comments
-                    </p>
+                <div style="margin: 1rem 0">
+                    <h3 class="is-size-6 has-text-secondary">Comments</h3>
                     <div style="margin-top: 0.5rem;">
                         <app-view-post-new-comment></app-view-post-new-comment>
                         <div>
