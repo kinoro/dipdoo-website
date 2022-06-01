@@ -21,7 +21,7 @@ export class PostOptionViewComponent {
 
     @Input() post: Post;
     @Input() option: PostOption;
-    @ViewChild('postImage', { static: false }) postImage: ElementRef;
+    @ViewChild('postImage') postImage: ElementRef;
 
     mediaTypeEnum: any = MediaType;
     isMediaModalActive: boolean;

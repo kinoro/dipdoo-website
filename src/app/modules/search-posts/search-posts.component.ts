@@ -18,7 +18,7 @@ import { ViewPostsService } from 'src/app/services/view-posts.service';
 })
 export class SearchPostsComponent implements OnInit, AfterViewInit {
 
-    @ViewChild(SearchBarComponent, { static: false }) searchBar: SearchBarComponent;
+    @ViewChild(SearchBarComponent) searchBar: SearchBarComponent;
 
     @Input() public searchTerm: string;
 

@@ -24,8 +24,8 @@ export class AppComponent implements OnInit, OnDestroy {
     get username() { return this.appService.username; }
     get siteName() { return this.appService.siteName; }
 
-    @ViewChild('dropdown', { static: false }) dropdown;
-    @ViewChild('notificationDropdown', { static: false }) notificationDropdown;
+    @ViewChild('dropdown') dropdown;
+    @ViewChild('notificationDropdown') notificationDropdown;
 
     isShowMobileMenu: boolean;
     onRotateFunc: any;

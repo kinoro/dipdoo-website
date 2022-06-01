@@ -35,7 +35,7 @@ import { AdminPostReportDataService } from 'src/app/data/admin-post-report-data.
 export class ViewReportedPostsPostComponent implements OnInit, OnDestroy {
 
     @Input() post: ReportedPostSummary;
-    @ViewChild('postImage', { static: false }) postImage: ElementRef;
+    @ViewChild('postImage') postImage: ElementRef;
 
     public isNonStandardResolution: boolean;
     public hasImageLoaded: boolean;

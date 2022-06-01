@@ -57,8 +57,8 @@ import { ViewPostsService } from 'src/app/services/view-posts.service';
 export class ViewPostSummaryComponent implements OnInit, OnDestroy {
 
     @Input() post: PostSummary;
-    @ViewChild('linkUrlInput', { static: false }) public linkUrlInput: ElementRef;
-    @ViewChild('postImage', { static: false }) postImage: ElementRef;
+    @ViewChild('linkUrlInput') public linkUrlInput: ElementRef;
+    @ViewChild('postImage') postImage: ElementRef;
 
     drawMode: DrawMode;
     animationMode: AnimationMode;

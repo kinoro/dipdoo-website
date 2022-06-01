@@ -16,8 +16,8 @@
           "prefix": "",
           "selector": "",
           "skipImport": false,
-          "spec": false,
-          "styleext": "css",
+          "skipTests": true,
+          "style": "css",
           "viewEncapsulation": "Emulated"
         },
         "@schematics/angular:module": {
@@ -26,18 +26,18 @@
           "module": "",
           "routing": false,
           "routingScope": "Child",
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:service": {
           "flat": true,
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:pipe": {
           "export": false,
           "flat": true,
           "module": "",
           "skipImport": false,
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:directive": {
           "export": false,
@@ -46,10 +46,10 @@
           "prefix": "app",
           "selector": "",
           "skipImport": false,
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:class": {
-          "spec": false
+          "skipTests": true
         }
       },
       "root": "",
@@ -64,7 +64,7 @@
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
-            "aot": false,
+            "aot": true,
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -100,7 +100,6 @@
               "sourceMap": false,
               "extractCss": true,
               "namedChunks": false,
-              "aot": true,
               "extractLicenses": true,
               "vendorChunk": false,
               "buildOptimizer": true,
@@ -187,7 +186,7 @@
   "defaultProject": "dipdoo-website",
   "schematics": {
     "@schematics/angular:component": {
-      "styleext": "scss"
+      "style": "scss"
     }
   }
 }

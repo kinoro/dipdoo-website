@@ -49,7 +49,7 @@ import { FeedbackChoice, FeedbackChoiceErrorCodes } from './view-models/feedback
 export class EditPostComponent implements OnInit {
 
     @Input() room: string;
-    @ViewChild("fileInput", { static: false }) fileInputRef: ElementRef;
+    @ViewChild("fileInput") fileInputRef: ElementRef;
 
     public readonly MAX_IMAGE_SIZE_KB = 750;
 
