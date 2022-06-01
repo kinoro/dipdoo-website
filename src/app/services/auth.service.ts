@@ -107,7 +107,7 @@ export class AuthService {
     logout() {
         this.sharedData.clearTokenData();
         this.userAccount = null;
-        this.hasAttemptedRestore = false;
+        this.hasAttemptedRestore = true;
         this.likes = null;
         this.blockedUsers = null;
         this.authEventService.raiseEvent(AuthEventType.LoggedOut);

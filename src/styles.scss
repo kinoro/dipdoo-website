@@ -80,6 +80,21 @@ $navbar-small-height: 1.75rem !default;
   }
 }
 
+/* Modal */
+.modal-card-body {
+    @extend .is-size-6;
+}
+.modal-card-foot {
+    justify-content: end !important;
+}
+$modal-card-head-background-color: $white;
+$modal-card-title-size: $size-5;
+$modal-card-head-padding: 15px;
+$modal-card-body-padding: 15px;
+$modal-card-spacing: 80px;
+$modal-card-head-radius: 2px;
+$modal-card-foot-radius: 2px;
+
 /* Section */
 $section-padding: 0.5rem 0.25rem;
 
@@ -92,13 +107,6 @@ $box-radius: 0.125rem;
     &:not(:last-child) {
         margin-bottom: 0.5rem !important;
     }
-}
-
-/* Modal */
-$modal-card-head-background-color: $primary;
-$modal-card-title-color: whitesmoke;
-.modal-card-foot {
-    background-color: white !important;
 }
 
 /* Footer */

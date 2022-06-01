@@ -71,16 +71,18 @@ export class PostOptionViewComponent {
         }
 
         if (this.post.hasUserVoted != true) {
-            this.post.hasUserVoted = true;
-            postOption.hasUserVoted = true;
-            postOption.numVotes += 1;
-            this.post.numVotes += 1;
-
             let vote = new Vote();
             vote.postId = this.post.id;
             vote.postOptionId = postOption.id;
             try {
-                await this.voteData.save(vote);
+                var response = await this.voteData.save(vote);
+                if (response.isSuccess) {
+                    this.post.hasUserVoted = true;
+                    postOption.hasUserVoted = true;
+                    postOption.numVotes = response.numPostOptionVotes;
+                    this.post.numVotes = response.numPostVotes;
+                    this.authService.userAccount.numVotes = response.numUserAccountVotes;
+                }
             } catch (err) {
                 var msg = err.status == 429
                     ? "You're doing that just a little too often. Please try again shortly."

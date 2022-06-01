@@ -31,7 +31,7 @@
         <footer class="modal-card-foot" *ngIf="modalType == modalTypeEnum.Loading" style="border: 0; padding: 0.15rem">
         </footer>
         <footer class="modal-card-foot" *ngIf="modalType == modalTypeEnum.Button">
-            <button *ngFor="let btn of buttons" class="button is-primary" (click)="clickButton(btn)">{{btn}}</button>
+            <button *ngFor="let btn of buttons" class="button is-secondary" (click)="clickButton(btn)">{{btn}}</button>
             <button class="button" (click)="cancel()">Close</button>
         </footer>
     </div>

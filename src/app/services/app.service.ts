@@ -8,6 +8,8 @@ import { Subject, Observable } from 'rxjs';
 import { DeviceDetectorService } from 'ngx-device-detector';
 import { UserAccount } from '../models/user-account';
 import { SeoSocialShareService } from './seo-social-share.service';
+import { SiteConfigDataService } from '../data/site-config-data.service';
+import { SiteConfigService } from './site-config.service';
 
 @Injectable({
     providedIn: 'root'
@@ -43,7 +45,8 @@ export class AppService {
         private router: Router,
         private authService: AuthService,
         private deviceDetectorService: DeviceDetectorService,
-        private seoService: SeoSocialShareService ) {
+        private seoService: SeoSocialShareService,
+        private siteConfigService: SiteConfigService ) {
 
         this.modalResultEvents = new Subject<ModalResult>();
         this.isDesktop = this.deviceDetectorService.isDesktop();
@@ -67,6 +70,7 @@ export class AppService {
     }
 
     tryRestoreUser() {
+        this.siteConfigService.get();
         this.authService.tryRestoreUser();
     }
 

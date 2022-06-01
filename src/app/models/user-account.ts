@@ -6,6 +6,7 @@ export class UserAccount extends ModelEntity {
     isAdmin: boolean;
     isEmailConfirmed: boolean;
     refreshToken: string;
+    numVotes: number;
     numPosts: number;
     numComments: number;
     numFollowers: number;
