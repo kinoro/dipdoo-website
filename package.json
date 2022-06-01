@@ -20,7 +20,6 @@
     "@angular/platform-browser-dynamic": "~8.2.0",
     "@angular/router": "~8.2.0",
     "@creativebulma/bulma-badge": "^1.0.1",
-    "@fireflysemantics/angular-stripe-service": "^1.0.0",
     "@seregpie/k-means": "^2.0.0",
     "@stripe/stripe-js": "^1.9.0",
     "bulma": "^0.8.0",
