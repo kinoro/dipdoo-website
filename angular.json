@@ -75,7 +75,6 @@
               "node_modules/bulma/css/bulma.min.css",
               "node_modules/@creativebulma/bulma-badge/dist/bulma-badge.min.css",
               "node_modules/@fortawesome/fontawesome-free/css/all.css",
-              "node_modules/croppie/croppie.css",
               "src/styles.scss",
               "src/styles-animations.scss"
             ],
