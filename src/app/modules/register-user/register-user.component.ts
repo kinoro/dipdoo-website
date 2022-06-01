@@ -63,7 +63,7 @@ export class RegisterUserComponent implements OnInit {
         try {
             var response = await this.authData.register(model);
             this.confirmationToken = (response != null && response.length > 0) ? response : null;
-            this.finishRegisterAndLogin();
+            await this.finishRegisterAndLogin();
         } catch (errorResponse) {
             var errorMessage = errorResponse.error.toString().toLowerCase();
             if (errorMessage.includes("duplicateusername")) {
@@ -90,6 +90,8 @@ export class RegisterUserComponent implements OnInit {
         await this.authService.loginAndLoadUserAsync(model);
 
         this.hasRegistered = true;
+
+        this.goToNextRoute();
     }
 
     reset() {
