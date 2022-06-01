@@ -58,6 +58,7 @@ export class RegisterRequest {
     email: string;
     username: string;
     password: string;
+    recaptchaToken: string;
 }
 
 export class LoginRequest {

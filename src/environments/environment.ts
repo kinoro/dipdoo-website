@@ -7,7 +7,8 @@ export const environment = {
     authUrl: "http://localhost:8200/api/auth",  
     baseUrl: "http://localhost:8202/api",
     awsUrl: "http://s3.eu-west-2.amazonaws.com/dipdoo-images-dev",
-    useTestData: false
+    useTestData: false,
+    recaptchaSiteKey: '6LdwpjcgAAAAAIkfbzgCfiKrThGZhqiUGT_WHRGG',
 };
 
 /*

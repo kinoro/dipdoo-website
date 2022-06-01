@@ -5,11 +5,13 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ConfirmEmailComponent } from './components/confirm-email/confirm-email.component';
 import { RouterModule } from '@angular/router';
 import { SharedModule } from '../shared/shared.module';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
    imports: [
     SharedModule,
       ReactiveFormsModule,
+      RecaptchaModule
    ],
    declarations: [
       RegisterUserComponent,

@@ -5,6 +5,7 @@ import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms'
 import { MustMatch } from 'src/app/validators/must-match';
 import { AuthService } from 'src/app/services/auth.service';
 import { AppService } from 'src/app/services/app.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'div[app-register-user]',
@@ -29,6 +30,8 @@ export class RegisterUserComponent implements OnInit {
 
     public get hasConfirmationLink(): boolean { return this.confirmationToken != null && this.confirmationToken.length > 0; }
     public get f() { return this.form.controls; }
+    public get recaptchaSiteKey() { return environment.recaptchaSiteKey; }
+    recaptchaToken: string;
 
     constructor(private authData: AuthDataService, 
                 private authService: AuthService,
@@ -59,6 +62,7 @@ export class RegisterUserComponent implements OnInit {
         this.isWaiting = true;
 
         var model = this.form.value as RegisterRequest;
+        model.recaptchaToken = this.recaptchaToken;
 
         try {
             var response = await this.authData.register(model);
@@ -80,6 +84,10 @@ export class RegisterUserComponent implements OnInit {
         } finally {
             this.isWaiting = false;
         }
+    }
+
+    public recaptchaResolved(token) {
+        this.recaptchaToken = token;
     }
 
     async finishRegisterAndLogin() {

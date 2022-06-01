@@ -3,7 +3,6 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
-import { DeviceDetectorModule } from 'ngx-device-detector';
 
 import { AppComponent } from './app.component';
 import { RegisterUserModule } from './modules/register-user/register-user.module';
@@ -37,6 +36,7 @@ import { SearchPostsRouteComponent } from './routes/public/search-posts-route/se
 import { ViewPostsRouteComponent } from './routes/public/view-posts-route/view-posts-route.component';
 import { ViewPostsModule } from './modules/view-posts/view-posts.module';
 import { MediaModalComponent } from './modules/shared/media-modal/media-modal.component';
+import { RecaptchaModule } from 'ng-recaptcha';
 
 @NgModule({
     declarations: [
@@ -66,7 +66,6 @@ import { MediaModalComponent } from './modules/shared/media-modal/media-modal.co
         FormsModule,
         AppRoutingModule,
         HttpClientModule,
-        DeviceDetectorModule,
 
         RegisterUserModule,
         SignInModule,
@@ -78,7 +77,7 @@ import { MediaModalComponent } from './modules/shared/media-modal/media-modal.co
         SendResetPasswordModule,
         ViewAnnouncementsModule,
         SearchPostsModule,
-        ViewPostsModule,
+        ViewPostsModule,  
     ],
     providers: [
         {

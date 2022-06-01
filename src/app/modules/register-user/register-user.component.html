@@ -92,6 +92,12 @@
                             Terms and conditions must be accepted</p>
                     </div>
                 </div>
+
+                <!-- Recaptcha -->
+                <div style="margin: 2rem 0;">
+                    <re-captcha (resolved)="recaptchaResolved($event)" [siteKey]="recaptchaSiteKey">
+                    </re-captcha>
+                </div>
         
                 <div class="field">
                     <div class="control">
