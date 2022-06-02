@@ -101,7 +101,7 @@ export class PostOptionViewComponent {
             const imageDetails = this.imageHelperService.getImageDetails(postImageEl);
             option.isPortrait = imageDetails.isPortrait;
             option.hasImageLoaded = true;
-        }, 1000);
+        }, 500);
 
     }
 }

@@ -28,7 +28,7 @@
         <div style="flex:1; white-space: nowrap; padding: 0.25rem;
         overflow: hidden; position: relative;
         text-overflow: ellipsis; width: 100%">
-            <span>{{option.text}}</span>
+            <span *ngIf="option.hasImageLoaded || option.imageUrl == null">{{option.text}}</span>
         </div>
         
     </a>
