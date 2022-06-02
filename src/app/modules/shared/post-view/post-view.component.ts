@@ -17,6 +17,7 @@ import { PostReportDataService } from 'src/app/data/post-report-data.service';
 import { HelperService } from 'src/app/services/helper-service';
 import { PostsDataService } from 'src/app/data/posts-data.service';
 import { EventService } from 'src/app/services/event.service';
+import { PostHelperService } from 'src/app/services/post-helper.service';
 
 @Component({
     selector: 'app-post-view',
@@ -48,16 +49,31 @@ import { EventService } from 'src/app/services/event.service';
             cursor: pointer;
         }
 
-        .post-title {
+        .post-title a {
             color: unset;
         }
 
-        .post-title:hover {
+        .post-title a:hover {
             text-decoration: underline;
         }
 
-        .post-title:visited {
+        .post-title a:visited {
             color: unset;
+        }
+
+        .post-title-link {
+            padding-left: 10px; 
+            line-height: 12px; 
+            max-width: 250px; 
+            display: inline-block; 
+            text-overflow: ellipsis; 
+            white-space: nowrap; 
+            overflow: hidden;
+        }
+
+        .post-title-link:hover {
+            text-decoration: underline;
+            cursor: pointer;
         }
 
         .link-button {
@@ -89,9 +105,11 @@ export class PostViewComponent implements OnInit {
     get isDesktop() { return this.appService.isDesktop; }
     get countOptions() { return this.post.options.length; }
     get isAdminOrOwner() { return this.appService.isSignedIn && (this.authService.userAccount.isAdmin || this.post.userAccountId == this.authService.userAccount.id); }
-    get imageUrl() { return this.post.imageUrl != null ? this.post.imageUrl : `assets/icon-blue-faded-512.png`; }
+    get imageUrl() { return this.postHelperService.getImageUrlOrDefault(this.post); }
+    get isDefaultImageUrl() { return this.imageUrl == this.postHelperService.getDefaultImageUrl(); }
 
     constructor(private appService: AppService,
+        private postHelperService: PostHelperService,
         private mediaModalService: MediaModalService,
         private urlParsingService: UrlParsingService,
         private viewPostsService: ViewPostsService,
@@ -122,12 +140,15 @@ export class PostViewComponent implements OnInit {
     showMedia(imageUrl: string, linkUrl: string, contentType: ContentType) {
         const mediaType = this.getMediaType(linkUrl);
         if (contentType === ContentType.Link && mediaType === MediaType.Unknown) {
-            this.appService.openInNewTab(linkUrl);
+            this.appService.openLink(linkUrl);
             return;
         }
 
         const url = contentType === ContentType.Image ? imageUrl : linkUrl;
-        this.mediaModalService.show(url, contentType, mediaType);
+        if (url != null && url != this.postHelperService.getDefaultImageUrl())
+        {
+            this.mediaModalService.show(url, contentType, mediaType);
+        }
     }
 
     getNumVotesText(count: number) { return count == 1 ? `${count} vote` : `${count} votes`; }

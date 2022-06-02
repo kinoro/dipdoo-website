@@ -1,4 +1,4 @@
-<div style="background-color: white; padding: 1rem 0 1rem 1rem; margin-top: 0.5rem; border-left: solid 2px lightgray; margin-top: 1rem;">
+<div class="comment" [class.is-root-comment]="isRootComment" [class.is-child-comment]="isChildComment">
     <span class="enable-text-selection" [innerHTML]="getProcessedText(comment.text)"></span>
     <div class="has-text-grey-light"><span class="reply-button" (click)="showReply()">reply</span> • {{getTimeSince(comment)}} • comment by {{comment.username}} </div>
 </div>

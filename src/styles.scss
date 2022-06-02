@@ -121,6 +121,10 @@ app-view-posts-post {
     }
 }
 
+.has-cursor-pointer {
+    cursor: pointer;
+}
+
 .votes-subtext {
     @extend .is-size-7;
     color: black;
@@ -145,6 +149,18 @@ app-view-posts-post {
 .is-post-not-voted {
     .votes-subtext {
         color: white;
+    }
+}
+
+.comment {
+    background-color: white;
+    padding: 1rem 0 1rem 1rem;
+    border-left: solid 2px lightgray;
+    margin-top: 1rem;
+
+    &.is-root-comment {
+        padding-left: 0;
+        border-left: none;
     }
 }
 

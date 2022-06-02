@@ -18,6 +18,8 @@ export class ViewPostCommentComponent implements OnInit {
     @Input() comment: Comment;
     get canLoadMore() { return this.comment.numSubComments > (this.comment.subComments || []).length; }
     get loadMoreText() { return (this.comment.subComments || []).length == 0 ? "Show replies" : "Show more replies" }
+    get isRootComment() { return this.comment.parentCommentId == null; }
+    get isChildComment() { return this.comment.parentCommentId != null; }
 
     constructor(private appService: AppService,
                 private viewPostService: ViewPostService) { }

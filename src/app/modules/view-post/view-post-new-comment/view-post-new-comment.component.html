@@ -45,10 +45,10 @@
     </div>
 
     <div class="buttons">
-        <button class="button is-secondary is-small" (click)="trySave()">
+        <button class="button is-secondary" (click)="trySave()">
             Add Comment
         </button>
-        <button class="button is-small" *ngIf="parentComment != null" (click)="cancel()">
+        <button class="button" *ngIf="parentComment != null" (click)="cancel()">
             Cancel
         </button>
     </div>

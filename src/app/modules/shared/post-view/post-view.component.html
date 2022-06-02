@@ -5,8 +5,8 @@
 
         <!-- image -->
         <figure *ngIf="imageUrl != null && getMediaType(post.linkUrl) == mediaTypeEnum.Unknown"
-            class="image is-32x32"
-            style="margin: 0px 0 0px 8px; min-width: 32px; min-height:32px; cursor: pointer; overflow: hidden; align-self: center;"
+            class="image is-32x32" [class.has-cursor-pointer]="!isDefaultImageUrl"
+            style="margin: 0px 0 0px 8px; min-width: 32px; min-height:32px; overflow: hidden; align-self: center;"
             (click)="showMediaForPost()">
             <img [src]="imageUrl" alt="post image" style="height: 100%; object-fit: contain">
         </figure>
@@ -25,8 +25,11 @@
         <!-- title and sub details -->
         <div style="display: flex; flex-direction: column; justify-content: center; margin-left: 8px;">
             <div style="display: flex; align-items: center;">
-                <a *ngIf="allowLinkToPost" class="post-title" [class.has-text-weight-medium]="!hasVotedOnPost" [routerLink]='postLink'>{{post.title}}</a>
-                <span *ngIf="!allowLinkToPost" class="post-title" [class.has-text-weight-medium]="!hasVotedOnPost">{{post.title}}</span>
+                <div class="post-title" [class.has-text-weight-medium]="!hasVotedOnPost">
+                    <a *ngIf="allowLinkToPost" [routerLink]='postLink'>{{post.title}}</a>
+                    <span *ngIf="!allowLinkToPost">{{post.title}}</span>
+                    <div *ngIf="post.linkUrl != null && isDesktop" (click)="showMediaForPost()" class="is-size-7 has-text-grey-dark has-text-weight-normal post-title-link">({{post.linkUrl}})</div>
+                </div>
 
                 <!-- Tags (desktop)-->
                 <!--
@@ -35,9 +38,6 @@
                         (click)="selectTag(tag)">{{tag}}</a>
                 </ng-template>
                 -->
-
-                <span *ngIf="post.linkUrl != null && isDesktop" class="is-size-7 has-text-grey-dark"
-                    style="padding-left: 10px">({{post.linkUrl}})</span>
             </div>
 
             <!-- Tags (mobile) -->

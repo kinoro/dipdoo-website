@@ -14,6 +14,7 @@ import { PostTagSummaryDataService } from '../data/post-tag-summary-data.service
 import { PostTagSummary } from '../models/post-tag-summary';
 import { TagService } from './tag.service';
 import { CommentParentType } from '../enums/comment/comment-parent-type';
+import { PostsDataService } from '../data/posts-data.service';
 
 @Injectable({
     providedIn: 'root'
@@ -40,6 +41,7 @@ export class ViewPostService extends RoomHostBaseService {
     constructor(private appService: AppService,
                 private authService: AuthService,
                 private publicPostsData: PublicPostsDataService,
+                private postsData: PostsDataService,
                 private publicCommentsData: PublicCommentsDataService,
                 private userPostPreferencesData: UserPostPreferencesDataService,) {
 
@@ -86,7 +88,9 @@ export class ViewPostService extends RoomHostBaseService {
 
     private async loadPostAsync(id: string): Promise<Post> {
         try {
-            const post = await this.publicPostsData.getSingle(id);
+            const post = this.appService.isSignedIn
+                ? await this.postsData.getSingle(id)
+                : await this.publicPostsData.getSingle(id);
             return post;
         } catch {
             this.hasLoadFailed = true;

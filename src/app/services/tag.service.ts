@@ -29,7 +29,7 @@ export class TagService {
     }
 
     public convertTagsToTagList(tags: string): string[] {
-        if (tags.trim() == "") { return []; }
+        if ((tags || '').trim() == "") { return []; }
         return tags.toLowerCase().split(',').map(x => x.trim()).filter(x => x != null && x.length > 0);
     }
 

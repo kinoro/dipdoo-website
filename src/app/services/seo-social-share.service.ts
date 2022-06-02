@@ -26,7 +26,7 @@ export class SeoSocialShareService {
     }
 
     viewPost(post: Post) {
-        this.setTitle(`${post.title}`);
+        this.setTitle(`${post.title} | Dipdoo`);
         this.setDescription(post.details);
         this.setImage(post);
         

@@ -54,7 +54,7 @@ export class PostOptionViewComponent {
         let contentType = this.option.contentType;
         const mediaType = this.getMediaType(linkUrl);
         if (contentType === ContentType.Link && mediaType === MediaType.Unknown) {
-            this.appService.openInNewTab(linkUrl);
+            this.appService.openLink(linkUrl);
             return;
         }
 

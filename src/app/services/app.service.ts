@@ -265,9 +265,13 @@ export class AppService {
         return arr; // for testing purposes
     };
 
-    openInNewTab(url) {
-        var win = window.open(url, '_blank');
-        win.focus();
+    openLink(url, inNewTab = false) {
+        if (inNewTab) {
+            var win = window.open(url, '_blank');
+            win.focus();
+        } else {
+            window.location = url;
+        }
     }
 
     isDate(_date){
