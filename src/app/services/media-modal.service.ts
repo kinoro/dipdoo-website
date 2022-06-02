@@ -25,8 +25,6 @@ export class MediaModalService {
         this.contentType = contentType;
         this.mediaType = mediaType;
         this.isModalActive = true;
-
-        console.log(this.isModalActive);
     }
 
     hide() {

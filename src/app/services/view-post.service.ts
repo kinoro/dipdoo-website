@@ -67,7 +67,6 @@ export class ViewPostService extends RoomHostBaseService {
         this.commentLastLoadCount = 0;
 
         const id = this.extractId(friendlyId);
-        console.log(`friendly id is ${friendlyId}, extracted id ${id}`);
         this.post = await this.loadPostAsync(id);
         /*
         if (!this.hasLoadFailed) {
