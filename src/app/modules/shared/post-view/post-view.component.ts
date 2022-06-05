@@ -22,68 +22,7 @@ import { PostHelperService } from 'src/app/services/post-helper.service';
 @Component({
     selector: 'app-post-view',
     templateUrl: './post-view.component.html',
-    styles: [`
-        .view-content {
-            margin-bottom: 0;
-        }
-
-        .is-not-checked {
-            opacity: 0.5;
-        }
-
-        .box {
-            padding: 1rem 1rem 0.75rem 1rem;
-        }
-
-        .box-mobile-margin {
-            margin-bottom: 0.5rem;
-        }
-
-        .box-desktop-margin {
-            margin-bottom: 1.15rem;
-            margin-left: 0.25rem;
-            margin-right: 0.25rem;
-        }
-
-        .clickable {
-            cursor: pointer;
-        }
-
-        .post-title a {
-            color: unset;
-        }
-
-        .post-title a:hover {
-            text-decoration: underline;
-        }
-
-        .post-title a:visited {
-            color: unset;
-        }
-
-        .post-title-link {
-            padding-left: 10px; 
-            line-height: 12px; 
-            max-width: 250px; 
-            display: inline-block; 
-            text-overflow: ellipsis; 
-            white-space: nowrap; 
-            overflow: hidden;
-        }
-
-        .post-title-link:hover {
-            text-decoration: underline;
-            cursor: pointer;
-        }
-
-        .link-button {
-            cursor: pointer;
-        }
-
-        .link-button:hover {
-            text-decoration: underline;
-        }
-    `]
+    styles: [``]
 })
 export class PostViewComponent implements OnInit {
 

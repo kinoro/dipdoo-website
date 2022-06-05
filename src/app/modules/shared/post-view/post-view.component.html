@@ -26,9 +26,9 @@
         <div style="display: flex; flex-direction: column; justify-content: center; margin-left: 8px;">
             <div style="display: flex; align-items: center;">
                 <div class="post-title" [class.has-text-weight-medium]="!hasVotedOnPost">
-                    <a *ngIf="allowLinkToPost" [routerLink]='postLink'>{{post.title}}</a>
-                    <span *ngIf="!allowLinkToPost">{{post.title}}</span>
-                    <div *ngIf="post.linkUrl != null && isDesktop" (click)="showMediaForPost()" class="is-size-7 has-text-grey-dark has-text-weight-normal post-title-link">({{post.linkUrl}})</div>
+                    <a *ngIf="allowLinkToPost" class="post-title-text" [routerLink]='postLink'>{{post.title}}</a>
+                    <span class="post-title-text" *ngIf="!allowLinkToPost">{{post.title}}</span>
+                    <div *ngIf="post.linkUrl != null && isDesktop" (click)="showMediaForPost()" class="is-size-7 has-text-grey-dark has-text-weight-normal post-title-link">{{post.linkUrl}}</div>
                 </div>
 
                 <!-- Tags (desktop)-->

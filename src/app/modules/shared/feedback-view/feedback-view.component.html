@@ -1,0 +1,42 @@
+<!-- header -->
+<div class="disable-text-selection" style="background-color: white; min-height: 40px">
+    <div style="display: flex;">
+
+        <!-- image -->
+        <figure class="image is-32x32" style="margin: 0px 0 0px 8px; min-width: 32px; min-height:32px; overflow: hidden; align-self: center;">
+            <img src="assets/icon-512.png" alt="feedback image" style="height: 100%; object-fit: contain">
+        </figure>
+
+        <!-- title and sub details -->
+        <div style="display: flex; flex-direction: column; justify-content: center; margin-left: 8px;">
+            <div style="display: flex; align-items: center;">
+                <div class="post-title has-text-weight-medium">
+                    <span class="post-title-text">How can we make dipdoo better? Something you don't like? Just want to say hi?</span>
+                </div>
+            </div>
+
+            <div class="has-text-grey-light is-size-7">
+                <span class="link-button">what's this?</span>
+                <span>
+                    <span> • </span>
+                    <a class="has-text-grey-light link-button">this doesn't do anything</a>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- options -->
+<div class="columns is-mobile is-multiline disable-text-selection"
+    style="margin-top: 0; margin-left: 3.25rem; margin-right: 0; margin-bottom: 1rem;">
+    <div class="column" style="padding: 0.15rem"  [class.is-11]="isDesktop" [class.is-12]="!isDesktop">
+        <div class="field has-addons">
+            <p class="control is-expanded">
+                <input [(ngModel)]="feedback.text" maxlength="10" class="input" type="text">
+            </p>
+            <p class="control">
+                <a class="button is-secondary" [class.is-loading]="isSaving" (keypress.enter)="sendFeedback()" (click)="sendFeedback()">Send</a>
+            </p>
+        </div>
+    </div>
+</div>

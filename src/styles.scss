@@ -130,6 +130,36 @@ app-view-posts-post {
     color: black;
 }
 
+.post-title a {
+    color: unset;
+}
+
+.post-title a:hover {
+    text-decoration: underline;
+}
+
+.post-title a:visited {
+    color: unset;
+}
+
+.post-title-text {
+    padding-right: 10px;
+}
+
+.post-title-link {
+    line-height: 12px; 
+    max-width: 250px; 
+    display: inline-block; 
+    text-overflow: ellipsis; 
+    white-space: nowrap; 
+    overflow: hidden;
+}
+
+.post-title-link:hover {
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .is-post-voted-option-not-voted {
     opacity: 0.35;
 }
@@ -150,6 +180,14 @@ app-view-posts-post {
     .votes-subtext {
         color: white;
     }
+}
+
+.link-button {
+    cursor: pointer;
+}
+
+.link-button:hover {
+    text-decoration: underline;
 }
 
 .comment {

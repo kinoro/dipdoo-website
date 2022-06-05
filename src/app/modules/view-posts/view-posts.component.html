@@ -8,8 +8,11 @@
                 </div>
 
                 <!-- posts -->
-                <app-view-posts-post *ngFor="let post of posts; let i = index" [post]="post" [ordinal]="i + 1">
-                </app-view-posts-post>
+                <ng-container *ngFor="let post of posts; let i = index">
+                    <app-view-posts-feedback *ngIf="i == 4"></app-view-posts-feedback>
+                    <app-view-posts-post [post]="post" [ordinal]="i + 1">
+                    </app-view-posts-post>
+                </ng-container>
                 <div *ngIf="hasLoaded && posts.length == 0" style="margin:2rem; text-align: center;">
                     There are no posts to show yet
                 </div>

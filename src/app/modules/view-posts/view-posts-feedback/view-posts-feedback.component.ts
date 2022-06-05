@@ -5,13 +5,12 @@ import { UrlParsingService } from 'src/app/services/url-parsing.service';
 import { MediaType } from 'src/app/models/media-type';
 
 @Component({
-    selector: 'app-view-posts-post',
-    templateUrl: './view-posts-post.component.html',
+    selector: 'app-view-posts-feedback',
+    templateUrl: './view-posts-feedback.component.html',
     styles: []
 })
-export class ViewPostsPostComponent implements OnInit {
+export class ViewPostsFeedbackComponent implements OnInit {
 
-    @Input() post: Post;
     @Input() ordinal: number;
 
     constructor() { }
