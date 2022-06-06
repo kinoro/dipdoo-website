@@ -8,8 +8,8 @@ import { HelperService } from './helper-service';
 })
 export class SeoSocialShareService {
 
-    static defaultImage = "https://www.ponderegg.com/assets/icon-512.png";
-    static defaultFacebookImage = "https://www.ponderegg.com/assets/icon-512.png";
+    static defaultImage = "https://www.dipdoo.net/assets/icon-512.png";
+    static defaultFacebookImage = "https://www.dipdoo.net/assets/icon-512.png";
 
     constructor(private readonly metaService: Meta,
         private readonly titleService: Title,
