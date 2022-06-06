@@ -13,7 +13,7 @@
             </div>
 
             <img [src]="option.imageUrl" [class.is-hidden]="option.hasImageLoaded != true" style="object-fit: cover; height: 100%; aspect-ratio: 1/1;"
-                [class.fade-in]="option.hasImageLoaded == true" (click)="showMedia()" (load)="onPostImageLoaded(option)"
+                [class.fade-in]="option.hasImageLoaded == true" (click)="showMedia()" (load)="onPostImageLoaded(option)" (error)="onPostImageError(option)"
                 #postImage />
 
 

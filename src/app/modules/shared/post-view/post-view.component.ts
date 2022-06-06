@@ -174,4 +174,10 @@ export class PostViewComponent implements OnInit {
         this.hasImageLoaded = true;
         */
     }
+
+    onPostImageError() {
+        setTimeout(() => {
+            this.post.imageUrl = this.postHelperService.getDefaultImageUrl();
+        }, 500);
+    }
 }

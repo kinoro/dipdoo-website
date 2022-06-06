@@ -8,6 +8,7 @@ import { ContentType } from 'src/app/models/content-type';
 import { Vote } from 'src/app/models/vote';
 import { VoteDataService } from 'src/app/data/vote-data.service';
 import { AuthService } from 'src/app/services/auth.service';
+import { PostHelperService } from 'src/app/services/post-helper.service';
 import { CheckLoggedInService } from 'src/app/services/check-logged-in.service';
 import { ImageHelperService } from 'src/app/services/image-helper-service';
 import { HelperService } from 'src/app/services/helper-service';
@@ -40,6 +41,7 @@ export class PostOptionViewComponent {
         private voteData: VoteDataService,
         private authService: AuthService,
         private helperService: HelperService,
+        private postHelperService: PostHelperService,
         private checkLoggedInService: CheckLoggedInService,
         private imageHelperService: ImageHelperService,) { }
 
@@ -103,5 +105,15 @@ export class PostOptionViewComponent {
             option.hasImageLoaded = true;
         }, 500);
 
+    }
+
+    onPostImageError(option: PostOption) {
+        setTimeout(() => {
+            const postImageEl: HTMLImageElement = this.postImage.nativeElement;
+            const imageDetails = this.imageHelperService.getImageDetails(postImageEl);
+            option.isPortrait = imageDetails.isPortrait;
+            option.imageUrl = this.postHelperService.getDefaultImageUrl();
+            option.hasImageLoaded = true;
+        }, 500);
     }
 }
