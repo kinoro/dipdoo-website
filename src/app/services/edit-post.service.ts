@@ -113,6 +113,9 @@ export class EditPostService {
     }
 
     async convertToPost(basicDetails: BasicDetails, feedbackChoices: FeedbackChoice[]): Promise<Post> {
+
+        const BROKEN_LINK_IMAGE_URL = `${window.location.protocol}//${window.location.host}/assets/icon-blue-faded-512.png`;
+
         const post = new Post();
         post.title = basicDetails.title;
         post.tags = basicDetails.tags == null ? [] : basicDetails.tags.split(',');
@@ -131,35 +134,45 @@ export class EditPostService {
                 post.imageUrl = this.urlParsingService.getMediaPreviewUrl(basicDetails.contentUrl);
             } else {
                 var urlMetadata = await this.urlMetadataData.generate(basicDetails.contentUrl);
-                post.imageUrl = urlMetadata.imageUrl;
+                post.imageUrl = (urlMetadata.imageUrl || "").length > 0 ? urlMetadata.imageUrl : BROKEN_LINK_IMAGE_URL;
             }
         }
 
         post.options = [];
 
+        var optionPromises = [];
         for (let x of feedbackChoices) {
-            var postOption = new PostOption();
-            postOption.contentType = x.contentType;
-            postOption.id = feedbackChoices.indexOf(x);
-            postOption.text = x.text;
+            optionPromises.push(new Promise<void>(async (resolve, reject) => {
+                try {
+                    var postOption = new PostOption();
+                    postOption.contentType = x.contentType;
+                    postOption.id = feedbackChoices.indexOf(x);
+                    postOption.text = x.text;
+        
+                    if (x.contentType == ContentType.Image) {
+                        await this.uploadImage(x);
+                        postOption.imageUrl = this.urlParsingService.sanitizeUrl(x.imageHostedUrl);
+                    } else if (x.contentType == ContentType.Link) {
+                        postOption.linkUrl = this.urlParsingService.sanitizeUrl(x.contentUrl);
+                        postOption.imageUrl = x.otherUrl;
+                        var mediaType = this.urlParsingService.getMediaType(x.contentUrl);
+                        if (mediaType == MediaType.YouTube) {
+                            postOption.imageUrl = this.urlParsingService.getMediaPreviewUrl(x.contentUrl);
+                        } else {
+                            var urlMetadata = await this.urlMetadataData.generate(x.contentUrl);
+                            postOption.imageUrl = (urlMetadata.imageUrl || "").length > 0 ? urlMetadata.imageUrl : BROKEN_LINK_IMAGE_URL;
+                        }
+                    }
+        
+                    post.options.push(postOption);
 
-            if (x.contentType == ContentType.Image) {
-                await this.uploadImage(x);
-                postOption.imageUrl = this.urlParsingService.sanitizeUrl(x.imageHostedUrl);
-            } else if (x.contentType == ContentType.Link) {
-                postOption.linkUrl = this.urlParsingService.sanitizeUrl(x.contentUrl);
-                postOption.imageUrl = x.otherUrl;
-                var mediaType = this.urlParsingService.getMediaType(x.contentUrl);
-                if (mediaType == MediaType.YouTube) {
-                    postOption.imageUrl = this.urlParsingService.getMediaPreviewUrl(x.contentUrl);
-                } else {
-                    var urlMetadata = await this.urlMetadataData.generate(x.contentUrl);
-                    postOption.imageUrl = urlMetadata.imageUrl;
+                    resolve();
+                } catch (err) {
+                    reject(err);
                 }
-            }
-
-            post.options.push(postOption);
+            }));
         }
+        await Promise.all(optionPromises);
 
         return post;
     }
