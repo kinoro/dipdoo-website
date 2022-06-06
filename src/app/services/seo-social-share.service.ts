@@ -9,7 +9,7 @@ import { HelperService } from './helper-service';
 export class SeoSocialShareService {
 
     static defaultImage = "https://www.ponderegg.com/assets/icon-512.png";
-    static defaultFacebookImage = "https://www.ponderegg.com/assets/icon-logo-fb.png";
+    static defaultFacebookImage = "https://www.ponderegg.com/assets/icon-512.png";
 
     constructor(private readonly metaService: Meta,
         private readonly titleService: Title,
@@ -70,6 +70,7 @@ export class SeoSocialShareService {
             this.metaService.updateTag({ name: 'description', content: desc });
             this.metaService.updateTag({name: 'twitter:description', content: desc});
             this.metaService.updateTag({property: 'og:description', content: desc});
+            
         } else {
             this.metaService.removeTag(`name='description'`);
             this.metaService.removeTag(`name='twitter:description'`);
@@ -90,8 +91,8 @@ export class SeoSocialShareService {
             this.metaService.removeTag(`name='og:image:width'`);
             this.metaService.removeTag(`name='og:image:height'`);
         } else {
-            this.metaService.updateTag({ name: 'og:image:width', content: '1200' });
-            this.metaService.updateTag({ name: 'og:image:height', content: '630' });
+            this.metaService.updateTag({ name: 'og:image:width', content: '512' });
+            this.metaService.updateTag({ name: 'og:image:height', content: '512' });
         }
     }
 }
