@@ -87,12 +87,12 @@
                                             [class.is-danger]="submitted && basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.DetailMustBeCertainLength)"
                                             rows="3" (change)="revalidate()" (keyup)="revalidate()"
                                             [(ngModel)]="basicDetails.details" type="text"
-                                            placeholder="(Optional) 0-2048 characters"></textarea>
+                                            placeholder="(Optional) 0-5000 characters"></textarea>
                                     </div>
                                     <div *ngIf="submitted && basicDetails.hasErrors">
                                         <p class="help is-danger"
                                             *ngIf="basicDetails.hasErrorCode(basicDetailsErrorCodesEnum.DetailMustBeCertainLength)">
-                                            Detail must be between 0 and 2048 characters
+                                            Detail must be between 0 and 5000 characters
                                         </p>
                                     </div>
                                 </div>

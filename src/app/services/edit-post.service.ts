@@ -50,7 +50,7 @@ export class EditPostService {
         }
         basicDetails.tags = this.tagService.convertTagListToTags(this.tagService.convertTagsToTagList(basicDetails.tags));
 
-        if (basicDetails.details != null && basicDetails.details.length > 2048) {
+        if (basicDetails.details != null && basicDetails.details.length > 5000) {
             basicDetails.errorCodes.push(<number>BasicDetailsErrorCodes.DetailMustBeCertainLength);
         }
 
