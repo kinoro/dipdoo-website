@@ -51,10 +51,11 @@ export class PostViewComponent implements OnInit {
     get isDefaultImageUrl() { return this.imageUrl == this.postHelperService.getDefaultImageUrl(); }
     get hasOptionWithImage() { return this.post.options.find(x => x.imageUrl?.length > 0); }
     get hasOptionLengthGt20() { return this.post.options.find(x => x.text?.length > 20) != null }
-    get hasOptionLengthGt15() { return this.post.options.find(x => x.text?.length > 15) != null }
-    get hasOptionLengthGt4() { return this.post.options.find(x => x.text?.length > 4) != null }
+    get hasOptionLengthGt13() { return this.post.options.find(x => x.text?.length > 13) != null }
+    get hasOptionLengthGt9() { return this.post.options.find(x => x.text?.length > 9) != null }
+    get hasOptionLengthGt3() { return this.post.options.find(x => x.text?.length > 3) != null }
     get hasOptionLengthGt1() { return this.post.options.find(x => x.text?.length > 1) != null }
-    get hasOptionOnlySmall() { return !this.hasOptionLengthGt4 && !this.hasOptionWithImage; }
+    get hasOptionOnlySmall() { return !this.hasOptionLengthGt3 && !this.hasOptionWithImage; }
 
     constructor(private appService: AppService,
         private postHelperService: PostHelperService,
