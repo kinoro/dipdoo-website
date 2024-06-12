@@ -50,7 +50,7 @@ export class PostOptionViewComponent {
         return this.urlParsingService.getMediaType(url);
     }
 
-    showMedia() {
+    showMedia(evt: MouseEvent) {
         let imageUrl = this.option.imageUrl;
         let linkUrl = this.option.linkUrl;
         let contentType = this.option.contentType;
@@ -62,6 +62,9 @@ export class PostOptionViewComponent {
 
         const url = contentType === ContentType.Image ? imageUrl : linkUrl;
         this.mediaModalService.show(url, contentType, mediaType);
+
+        evt?.preventDefault();
+        evt?.stopPropagation();
     }
 
     async vote(postOption: PostOption) {

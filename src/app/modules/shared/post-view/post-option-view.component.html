@@ -13,11 +13,11 @@
             </div>
 
             <img [src]="option.imageUrl" [class.is-hidden]="option.hasImageLoaded != true" style="object-fit: cover; height: 100%; aspect-ratio: 1/1;"
-                [class.fade-in]="option.hasImageLoaded == true" (click)="showMedia()" (load)="onPostImageLoaded(option)" (error)="onPostImageError(option)"
+                [class.fade-in]="option.hasImageLoaded == true" (click)="showMedia($event)" (load)="onPostImageLoaded(option)" (error)="onPostImageError(option)"
                 #postImage />
 
 
-            <div *ngIf="option.hasImageLoaded && getMediaType(option.linkUrl) == mediaTypeEnum.YouTube" class="level" style="position:absolute; top: 50%; width: 100%; transform: translateY(-50%);" (click)="showMedia()">
+            <div *ngIf="option.hasImageLoaded && getMediaType(option.linkUrl) == mediaTypeEnum.YouTube" class="level" style="position:absolute; top: 50%; width: 100%; transform: translateY(-50%);" (click)="showMedia($event)">
                 <div class="level-item">
                     <p><span class="icon is-small has-text-white"><i class="fas fa-play"></i></span></p>
                 </div>
