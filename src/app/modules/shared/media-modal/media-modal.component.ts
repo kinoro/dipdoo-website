@@ -37,7 +37,7 @@ export class MediaModalComponent implements OnInit {
     modalTypeEnum: any =  ModalType;
     inputText: string;
 
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
     get isActive(): boolean { return this.mediaModalService.isModalActive; }
     get service() { return this.mediaModalService; }
 

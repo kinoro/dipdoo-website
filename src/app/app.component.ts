@@ -23,7 +23,7 @@ export class AppComponent implements OnInit, OnDestroy {
     get isAdmin() { return this.isSignedIn && this.authService.userAccount.isAdmin; }
     get username() { return this.appService.username; }
     get siteName() { return this.appService.siteName; }
-    get isDesktop() { return this.appService.isDesktop; }
+    get isMobile() { return this.appService.isMobile; }
 
     @ViewChild('dropdown') dropdown;
     @ViewChild('notificationDropdown') notificationDropdown;

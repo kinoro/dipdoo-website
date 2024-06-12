@@ -23,7 +23,7 @@ export class ViewUserComponent implements OnInit {
     @Input() username: string;
     @Input() userTabType: string;
 
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
     get userAccount(): UserAccount { return this.viewUserService.userAccount; }
     get numPosts(): number { return this.userAccount == null ? 0 : this.userAccount.numPosts; }
     get numFollowers(): number { return this.userAccount == null ? 0 : this.userAccount.numFollowers; }

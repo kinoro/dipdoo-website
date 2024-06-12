@@ -1,7 +1,7 @@
-<div class="box view-content" [class.box-desktop-margin]="isDesktop" [class.box-mobile-margin]="!isDesktop">
+<div class="box view-content" [class.box-desktop-margin]="!isMobile" [class.box-mobile-margin]="isMobile">
     <div class="level is-mobile">
         <div class="level-left">
-            <div class="level-item" *ngIf="isDesktop">
+            <div class="level-item" *ngIf="!isMobile">
                 <span></span>
             </div>
         </div>
@@ -18,7 +18,7 @@
             <div class="level-item">
                 <button (click)="search()" class="button is-secondary">
                     <span class="icon"><i class="fas fa-search" aria-hidden="true"></i></span>
-                    <span *ngIf="isDesktop">Search</span>
+                    <span *ngIf="!isMobile">Search</span>
                 </button>
             </div>
         </div>

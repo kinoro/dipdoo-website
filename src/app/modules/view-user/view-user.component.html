@@ -6,21 +6,21 @@
                     <div class="level-item">
                         <div class="buttons">
                             <button class="button" [class.is-primary]="!isUserTabType(userTabTypeEnum.Profile)"
-                                [class.mobile-button-max-width]="!isDesktop"
+                                [class.mobile-button-max-width]="isMobile"
                                 (click)="switchUserTabType(userTabTypeEnum.Profile)">
                                 <span style="overflow: hidden; text-overflow: ellipsis;">{{username}}</span>
                             </button>
                             <button class="button" [class.is-primary]="!isUserTabType(userTabTypeEnum.Posts)"
                                 (click)="switchUserTabType(userTabTypeEnum.Posts)">
-                                Posts<span *ngIf="isDesktop">&nbsp;({{numPosts}})</span>
+                                Posts<span *ngIf="!isMobile">&nbsp;({{numPosts}})</span>
                             </button>
                             <button class="button" [class.is-primary]="!isUserTabType(userTabTypeEnum.Followers)"
                                 (click)="switchUserTabType(userTabTypeEnum.Followers)">
-                                Followers<span *ngIf="isDesktop">&nbsp;({{numFollowers}})</span>
+                                Followers<span *ngIf="!isMobile">&nbsp;({{numFollowers}})</span>
                             </button>
                             <button class="button" [class.is-primary]="!isUserTabType(userTabTypeEnum.Following)"
                                 (click)="switchUserTabType(userTabTypeEnum.Following)">
-                                Following<span *ngIf="isDesktop">&nbsp;({{numFollowing}})</span>
+                                Following<span *ngIf="!isMobile">&nbsp;({{numFollowing}})</span>
                             </button>
                         </div>
                     </div>

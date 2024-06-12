@@ -55,7 +55,7 @@ export class EditPostComponent implements OnInit {
 
     get post(): Post { return null; }
     get hasLoaded(): boolean { return true; }
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
     get isViewPortrait(): boolean { return this.appService.isViewPortrait; }
     get canDeleteChoice() { return this.feedbackChoices.length > 2; }
     get canAddChoice() { return this.feedbackChoices.length < 6; }

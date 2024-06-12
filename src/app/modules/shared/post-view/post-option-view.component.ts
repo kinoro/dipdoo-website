@@ -32,7 +32,7 @@ export class PostOptionViewComponent {
     get isPostVotedOptionNotVoted() { return this.post.hasUserVoted == true && this.option.hasUserVoted != true; }
     get isPostNotVoted() { return this.post.hasUserVoted != true; }
     get hasVotedOnPost() { return this.post.hasUserVoted == true; }
-    get isDesktop() { return this.appService.isDesktop; }
+    get isMobile() { return this.appService.isMobile; }
     get isAdminOrOwner() { return this.appService.isSignedIn && (this.authService.userAccount.isAdmin || this.post.userAccountId == this.authService.userAccount.id); }
     get votesAsPercentage() { return this.post.numVotes == 0 ? 0 : this.helperService.round((this.option.numVotes / this.post.numVotes) * 100, 1); }
     constructor(private appService: AppService,

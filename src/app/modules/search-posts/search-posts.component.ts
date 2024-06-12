@@ -25,7 +25,7 @@ export class SearchPostsComponent implements OnInit, AfterViewInit {
     get postModels(): Array<PostSummary> { return this.searchPostsService.posts; }
     get hasLoaded(): boolean { return this.postModels != null || this.searchPostsService.isEmpty; }
     get hasFailed(): boolean { return this.searchPostsService.hasLoadFailed; }
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
     get isLoggedIn(): boolean { return this.appService.isSignedIn; }
     get isLoadingPosts(): boolean { return this.searchPostsService.isLoadingPosts; }
     get errorMessage(): string { return this.searchPostsService.errorMessage; }

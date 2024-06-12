@@ -92,7 +92,7 @@ export class ViewPostSummaryComponent implements OnInit, OnDestroy {
     get canUseAsBase() { return !this.isUserBlocked && !this.isAnimation && this.hasImageLoaded && this.isStandardResolution; }
     get isAnimation() { return this.post.title.endsWith('.gif'); }
     get pinnedRooms(): RoomSummary[] { return this.viewPostsService.pinnedRooms.filter(x => x.name !== 'general'); }
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
 
     constructor(private appService: AppService,
                 private authService: AuthService,

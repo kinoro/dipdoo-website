@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ImageDetails } from '../models/ui/image-details';
-import { ResolutionHelperService } from './resolution/resolution-helper.service';
 
 @Injectable({
     providedIn: 'root'
@@ -9,7 +8,7 @@ export class ImageHelperService {
 
     static TargetAspectRatio = 4 / 3;
 
-    constructor(private resolutionHelperService: ResolutionHelperService) {
+    constructor() {
     }
 
     public getImageDetails(imageElement: HTMLImageElement): ImageDetails {

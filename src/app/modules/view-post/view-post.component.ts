@@ -16,7 +16,7 @@ export class ViewPostComponent implements OnInit {
 
     @Input() postFriendlyId: string;
 
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
     get post(): Post { return this.viewPostService.post; }
     get comments(): Array<Comment> { return this.viewPostService.comments; }
     get hasLoaded(): boolean { return this.post != null }

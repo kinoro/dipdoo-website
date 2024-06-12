@@ -21,7 +21,7 @@ export class ModalComponent implements OnInit {
     modalTypeEnum: any =  ModalType;
     inputText: string;
 
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
     get isActive(): boolean { return this.appService.isModalActive; }
     get fa(): string { return this.appService.modalDetails != null ? this.appService.modalDetails.fa : ""; }
     get title(): string { return this.appService.modalDetails != null ? this.appService.modalDetails.title : ""; }

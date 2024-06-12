@@ -34,7 +34,7 @@ export class ViewPostNewCommentComponent implements OnInit {
 
     get isSignedIn() { return this.appService.isSignedIn; }
     get areCommentNotificationsOn() { return this.viewPostService.userPostPreferences.areCommentNotificationsOn; }
-    get isDesktop() { return this.appService.isDesktop; }
+    get isMobile() { return this.appService.isMobile; }
     get isAdmin() { return this.authService.isSignedIn && this.authService.userAccount.isAdmin; }
     get textPlaceholder() { return `${this.textMinLength}-${this.textMaxLength} characters`; }
 

@@ -31,7 +31,7 @@
 <!-- options -->
 <div class="columns is-mobile is-multiline disable-text-selection"
     style="margin-top: 0; margin-left: 3.25rem; margin-right: 0; margin-bottom: 1rem;">
-    <div class="column" style="padding: 0.15rem"  [class.is-11]="isDesktop" [class.is-12]="!isDesktop">
+    <div class="column" style="padding: 0.15rem"  [class.is-11]="!isMobile" [class.is-12]="isMobile">
         <div class="field has-addons">
             <p class="control is-expanded">
                 <input [(ngModel)]="feedback.text" maxlength="10" class="input" type="text">

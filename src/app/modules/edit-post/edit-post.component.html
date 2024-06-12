@@ -403,16 +403,16 @@
     
                 <div class="buttons" style="margin-top: 2rem; margin-bottom: 0;">
                     <button *ngIf="isSaving" class="button is-secondary">
-                        <span *ngIf="isDesktop" class="icon"><i class="fas fa-spinner fa-pulse"
+                        <span *ngIf="!isMobile" class="icon"><i class="fas fa-spinner fa-pulse"
                                 aria-hidden="true"></i></span>
                     </button>
                     <button *ngIf="!isSaving" class="button is-secondary" (click)="trySave()">
-                        <span *ngIf="isDesktop" class="icon"><i class="fas fa-paper-plane"
+                        <span *ngIf="!isMobile" class="icon"><i class="fas fa-paper-plane"
                                 aria-hidden="true"></i></span>
                         <span>Submit</span>
                     </button>
                     <button *ngIf="!isSaving && isAdmin" class="button is-secondary" (click)="fillTestData()">
-                        <span *ngIf="isDesktop" class="icon"><i class="fas fa-paper-plane"
+                        <span *ngIf="!isMobile" class="icon"><i class="fas fa-paper-plane"
                                 aria-hidden="true"></i></span>
                         <span>Fill Test Data</span>
                     </button>

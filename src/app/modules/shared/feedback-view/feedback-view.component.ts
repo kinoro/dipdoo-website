@@ -1,23 +1,6 @@
-import { Component, OnInit, OnDestroy, Output, EventEmitter, Input } from '@angular/core';
-import { MediaType } from 'src/app/models/media-type';
-import { Post, PostOption } from 'src/app/models/post';
+import { Component, OnInit } from '@angular/core';
 import { AppService } from 'src/app/services/app.service';
-import { SearchPostsService } from 'src/app/services/search-posts.service';
-import { TagService, TagValidity } from 'src/app/services/tag.service';
-import { UrlParsingService } from 'src/app/services/url-parsing.service';
-import { MediaModalService } from 'src/app/services/media-modal.service';
-import { ContentType } from 'src/app/models/content-type';
-import { ViewPostsService } from 'src/app/services/view-posts.service';
-import { Vote } from 'src/app/models/vote';
-import { VoteDataService } from 'src/app/data/vote-data.service';
-import { AuthService } from 'src/app/services/auth.service';
 import { ModalResultType, ModalType } from 'src/app/models/modal-details';
-import { CheckLoggedInService } from 'src/app/services/check-logged-in.service';
-import { PostReportDataService } from 'src/app/data/post-report-data.service';
-import { HelperService } from 'src/app/services/helper-service';
-import { PostsDataService } from 'src/app/data/posts-data.service';
-import { EventService } from 'src/app/services/event.service';
-import { PostHelperService } from 'src/app/services/post-helper.service';
 import { Feedback } from 'src/app/models/feedback';
 import { FeedbackDataService } from 'src/app/data/feedback-data.service';
 import { FeedbackType } from 'src/app/enums/feedback-type';
@@ -33,7 +16,7 @@ export class FeedbackViewComponent implements OnInit {
     isSaving: boolean;
     hasSaved: boolean
 
-    get isDesktop() { return this.appService.isDesktop; }
+    get isMobile() { return this.appService.isMobile; }
     get isLoggedIn() { return this.appService.isSignedIn; }
 
     constructor(private appService: AppService,

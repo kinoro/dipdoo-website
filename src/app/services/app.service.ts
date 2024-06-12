@@ -1,14 +1,12 @@
-import { HostListener, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
 import { IdDesc } from '../models/id-desc';
 import { ModalDetails, ModalResult, ModalResultType } from '../models/modal-details';
 import { Subject, Observable } from 'rxjs';
-import { DeviceDetectorService } from 'ngx-device-detector';
 import { UserAccount } from '../models/user-account';
 import { SeoSocialShareService } from './seo-social-share.service';
-import { SiteConfigDataService } from '../data/site-config-data.service';
 import { SiteConfigService } from './site-config.service';
 
 @Injectable({
@@ -47,12 +45,10 @@ export class AppService {
     constructor(private meta: Meta,
         private router: Router,
         private authService: AuthService,
-        private deviceDetectorService: DeviceDetectorService,
         private seoService: SeoSocialShareService,
         private siteConfigService: SiteConfigService ) {
 
         this.modalResultEvents = new Subject<ModalResult>();
-        //this.isDesktop = this.deviceDetectorService.isDesktop();
         this.refreshScreenSizeBools();
         this.recalculateView();
     }
@@ -66,7 +62,6 @@ export class AppService {
         this.isTablet = document.body.clientWidth >= 768 && document.body.clientWidth < 1024;
         this.isDesktop = document.body.clientWidth >= 1024 && document.body.clientWidth < 1216;
         this.isWidescreen = document.body.clientWidth >= 1216;
-        console.log(`${this.isMobile} ${this.isTablet} ${this.isDesktop} ${this.isWidescreen}`, document.body.clientWidth)
     }
 
     recalculateView() {

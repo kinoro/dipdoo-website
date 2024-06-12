@@ -1,4 +1,4 @@
-<div class="modal" [class.is-active]="isActive" [class.mobile-padding]="!isDesktop">
+<div class="modal" [class.is-active]="isActive" [class.mobile-padding]="isMobile">
     <div class="modal-background" (click)="close()"></div>
     <div class="modal-content" style="width: 95%; max-width:640px;">
         <div *ngIf="service.contentType == contentTypeEnum.Image" style="display: flex; justify-content: center; align-items: center;">

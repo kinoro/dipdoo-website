@@ -24,7 +24,7 @@ export class ViewPostsComponent implements OnInit, OnDestroy {
     get posts(): Array<Post> { return this.viewPostsService.posts; }
     get hasLoaded(): boolean { return this.posts != null; }
     get hasFailed(): boolean { return this.viewPostsService.hasLoadFailed; }
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
     get isLoggedIn(): boolean { return this.appService.isSignedIn; }
     get isServerUnavailable(): boolean { return this.viewPostsService.isServerUnavailable; }
     get canLoadMore() { return this.viewPostsService.canLoadMore; }

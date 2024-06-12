@@ -17,7 +17,7 @@ export class ViewPostsTopbarComponent implements OnInit {
     get posts() { return this.viewPostsService.posts; }
     get hasTag() { return this.viewPostsService.tag != null && this.viewPostsService.tag.length > 0; }
     get tag() { return this.viewPostsService.tag; }
-    get isDesktop() { return this.appService.isDesktop; }
+    get isMobile() { return this.appService.isMobile; }
 
     orderByEnum: any = PostListOrderBy;
 

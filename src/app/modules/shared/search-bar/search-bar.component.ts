@@ -30,7 +30,7 @@ export class SearchBarComponent implements OnInit {
     @Input() inputSearchTerm: string;
 
     searchTerm: string;
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
 
     constructor(private appService: AppService,
         private searchPostsService: SearchPostsService,

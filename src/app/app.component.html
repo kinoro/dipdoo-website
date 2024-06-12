@@ -15,7 +15,7 @@
 
     <!-- Menu -->
     <div id="navbarBasicExample" class="navbar-menu" [class.is-active]="isShowMobileMenu">
-        <div class="navbar-start" *ngIf="isDesktop">
+        <div class="navbar-start" *ngIf="!isMobile">
             <div class="navbar-item">
                 <span class="has-text-primary">Give Choices &gt; Get Answers</span>
             </div>

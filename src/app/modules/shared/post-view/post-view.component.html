@@ -28,12 +28,12 @@
                 <div class="post-title" [class.has-text-weight-medium]="!hasVotedOnPost">
                     <a *ngIf="allowLinkToPost" class="post-title-text" [routerLink]='postLink'>{{post.title}}</a>
                     <span class="post-title-text" *ngIf="!allowLinkToPost">{{post.title}}</span>
-                    <div *ngIf="post.linkUrl != null && isDesktop" (click)="showMediaForPost()" class="is-size-7 has-text-grey-dark has-text-weight-normal post-title-link">{{post.linkUrl}}</div>
+                    <div *ngIf="post.linkUrl != null && !isMobile" (click)="showMediaForPost()" class="is-size-7 has-text-grey-dark has-text-weight-normal post-title-link">{{post.linkUrl}}</div>
                 </div>
 
                 <!-- Tags (desktop)-->
                 <!--
-                <ng-template [ngIf]="isDesktop">
+                <ng-template [ngIf]="!isMobile">
                     <a class="tag is-link" *ngFor="let tag of tagsArray" style="margin: 0px 3px;"
                         (click)="selectTag(tag)">{{tag}}</a>
                 </ng-template>
@@ -42,7 +42,7 @@
 
             <!-- Tags (mobile) -->
             <!--
-            <div *ngIf="!isDesktop" style="margin-left: -3px;">
+            <div *ngIf="isMobile" style="margin-left: -3px;">
                 <a class="tag is-link" *ngFor="let tag of tagsArray" style="margin: 0px 3px;"
                     (click)="selectTag(tag)">{{tag}}</a>
             </div>

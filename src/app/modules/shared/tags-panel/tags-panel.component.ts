@@ -46,7 +46,7 @@ export class TagsPanelComponent implements OnInit {
     errorMessage: string;
 
     get hasTags() { return this.tagList.length > 0; }
-    get isDesktop(): boolean { return this.appService.isDesktop; }
+    get isMobile(): boolean { return this.appService.isMobile; }
     get hasErrorMessage(): boolean { return this.errorMessage != null && this.errorMessage.length > 0; }
 
     constructor(private appService: AppService,

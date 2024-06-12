@@ -37,7 +37,7 @@ export class PostViewComponent implements OnInit {
     hasStartedDeleting: boolean;
     hasDeleted: boolean;
 
-    get optionFillers() { return this.isDesktop ? this.optionFillerArray.filter(x => x > this.post.options.length) : []; }
+    get optionFillers() { return this.isMobile ? this.optionFillerArray.filter(x => x > this.post.options.length) : []; }
     get tagsArray() { return this.post.tags == null ? [] : this.post.tags; }
     get postLink() { return `/post/${this.helperService.buildFriendlyId(this.post)}`; }
     get hasVotedOnPost() { return this.post.hasUserVoted == true; }
