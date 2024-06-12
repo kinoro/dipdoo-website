@@ -75,7 +75,7 @@
     style="margin-top: 0; margin-left: 3.25rem; margin-right: 0; margin-bottom: 0;">
     <div *ngFor="let option of post.options" class="column" 
         [class.is-2]="hasOptionOnlySmall || (!isMobile && !hasOptionLengthGt13 && !hasOptionWithImage) || (!isMobile && !hasOptionLengthGt9 && hasOptionWithImage)" 
-        [class.is-4]="!hasOptionOnlySmall && (!isMobile && hasOptionLengthGt13)"
+        [class.is-4]="!hasOptionOnlySmall && !isMobile && (hasOptionLengthGt13 || (hasOptionLengthGt9 && hasOptionWithImage))"
         [class.is-6]="!hasOptionOnlySmall && ((isMobile && !hasOptionLengthGt13) || isTablet)" 
         [class.is-12]="!hasOptionOnlySmall && (isMobile && hasOptionLengthGt13)"
         style="padding: 0.15rem">
