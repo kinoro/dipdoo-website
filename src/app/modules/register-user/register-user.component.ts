@@ -97,6 +97,7 @@ export class RegisterUserComponent implements OnInit {
         var model = this.form.value as LoginRequest;
         await this.authService.loginAndLoadUserAsync(model);
 
+        (<any>window).gtag("event", "sign_up", { method: "Website" });
         this.hasRegistered = true;
 
         this.goToNextRoute();

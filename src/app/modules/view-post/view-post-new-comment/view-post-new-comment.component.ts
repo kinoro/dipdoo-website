@@ -51,11 +51,11 @@ export class ViewPostNewCommentComponent implements OnInit {
     isSaving = false;
 
     constructor(private appService: AppService,
-                private viewPostService: ViewPostService,
-                private editCommentService: EditCommentService,
-                private commentData: CommentDataService,
-                private authService: AuthService,
-                private checkLoggedInService: CheckLoggedInService) { }
+        private viewPostService: ViewPostService,
+        private editCommentService: EditCommentService,
+        private commentData: CommentDataService,
+        private authService: AuthService,
+        private checkLoggedInService: CheckLoggedInService) { }
 
     ngOnInit() {
         this.reset();
@@ -106,6 +106,7 @@ export class ViewPostNewCommentComponent implements OnInit {
                     await this.viewPostService.refreshCommentsForComment(this.parentComment);
                 }
 
+                this.trackEvent('add-comment');
                 this.reset();
                 this.cancel();
             } catch (err) {
@@ -131,6 +132,12 @@ export class ViewPostNewCommentComponent implements OnInit {
 
     cancelHoldAndRegister() { this.isUnauthorisedModalActive = false; }
     cancelRefreshUserAndRetry() { this.isUnconfirmedModalActive = false; }
+
+    trackEvent(eventName: string) {
+        try {
+            (<any>window).gtag("event", eventName, {});
+        } catch { }
+    }
 
     public toggleCommentNotificationsActive() {
         this.hasSavedUserPostPreferences = true;

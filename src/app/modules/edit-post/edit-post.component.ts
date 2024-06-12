@@ -146,6 +146,7 @@ export class EditPostComponent implements OnInit {
                 this.isSaving = true;
                 const post = await this.editPostService.convertToPost(this.basicDetails, this.feedbackChoices);
                 await this.postData.save(post);
+                this.trackEvent('save-post');
                 this.goHome();
             } catch (err) {
                 this.isSaving = false;
@@ -155,6 +156,12 @@ export class EditPostComponent implements OnInit {
             }
 
         }
+    }
+
+    trackEvent(eventName: string) {
+        try {
+            (<any>window).gtag("event", eventName, {});
+        } catch { }
     }
 
     deleteChoice(feedbackChoice: FeedbackChoice) {
