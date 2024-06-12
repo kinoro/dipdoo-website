@@ -43,6 +43,14 @@ export class FeedbackViewComponent implements OnInit {
         this.feedback = new Feedback();
     }
 
+    showInfoPopup(text: string) {
+        this.appService.showModalAsync({
+            modalType: ModalType.Prompt,
+            title: "Help",
+            text: text
+        });
+    }
+
     async sendFeedback() {
         try {
             this.isSaving = true;

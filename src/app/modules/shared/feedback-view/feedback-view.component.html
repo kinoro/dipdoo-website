@@ -16,10 +16,12 @@
             </div>
 
             <div class="has-text-grey-light is-size-7">
-                <span class="link-button">what's this?</span>
+                <span class="link-button" (click)="showInfoPopup('This allows you to leave some feedback and influence how the site develops.')">what's this?</span>
                 <span>
                     <span> • </span>
-                    <a class="has-text-grey-light link-button">this doesn't do anything</a>
+                    <a class="has-text-grey-light link-button" (click)="showInfoPopup('This does not do anything - except show this message.')">what about this?</a>
+                    <span> • </span>
+                    <a class="has-text-grey-light link-button" (click)="showInfoPopup('Ok I lied')">this doesn't do anything</a>
                 </span>
             </div>
         </div>
