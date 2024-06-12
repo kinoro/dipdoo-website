@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { HostListener, Injectable } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
 import { AuthService } from './auth.service';
 import { Router } from '@angular/router';
@@ -30,7 +30,10 @@ export class AppService {
     hasSignUpImage: boolean = false;
     modalDetails: ModalDetails;
     isViewPortrait: boolean = false;
+    isMobile: boolean = false;
+    isTablet: boolean = false;
     isDesktop: boolean = false;
+    isWidescreen: boolean = false;
 
     get isSignedIn() { return this.authService.isSignedIn; }
     get isModalActive() { return this.modalDetails != null; }
@@ -49,12 +52,21 @@ export class AppService {
         private siteConfigService: SiteConfigService ) {
 
         this.modalResultEvents = new Subject<ModalResult>();
-        this.isDesktop = this.deviceDetectorService.isDesktop();
+        //this.isDesktop = this.deviceDetectorService.isDesktop();
+        this.refreshScreenSizeBools();
         this.recalculateView();
     }
 
     updateSeo() {
         this.seoService.viewAny();
+    }
+
+    refreshScreenSizeBools() {
+        this.isMobile = document.body.clientWidth < 768;
+        this.isTablet = document.body.clientWidth >= 768 && document.body.clientWidth < 1024;
+        this.isDesktop = document.body.clientWidth >= 1024 && document.body.clientWidth < 1216;
+        this.isWidescreen = document.body.clientWidth >= 1216;
+        console.log(`${this.isMobile} ${this.isTablet} ${this.isDesktop} ${this.isWidescreen}`, document.body.clientWidth)
     }
 
     recalculateView() {

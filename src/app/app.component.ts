@@ -1,4 +1,4 @@
-import { Component, ViewChild, Renderer2, OnDestroy, OnInit } from '@angular/core';
+import { Component, ViewChild, Renderer2, OnDestroy, OnInit, HostListener } from '@angular/core';
 import { AppService } from './services/app.service';
 import {Router, NavigationEnd} from '@angular/router';
 import { AuthService } from './services/auth.service';
@@ -55,6 +55,11 @@ export class AppComponent implements OnInit, OnDestroy {
     ngOnInit() {
         this.onRotateFunc = this.renderer.listen(window, 'orientationchange', (evt) => {
             window.setTimeout(() => { this.appService.recalculateView(); }, 99); });
+    }
+
+    @HostListener('window:resize', ['$event'])
+    onWindowResize() {
+        this.appService.refreshScreenSizeBools();
     }
 
     toggleMobileMenu() {

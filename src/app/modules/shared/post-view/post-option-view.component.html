@@ -34,7 +34,8 @@
     </a>
     
     <!-- Votes -->
-    <div class="is-size-7" class="votes-subtext" style="display: flex; flex-direction: row; margin: 0 .5rem 0rem .5rem; flex-grow: 0; flex-shrink: 1; justify-content: center;">
+    <div class="is-size-7" *ngIf="isPostVotedOptionVoted" class="votes-subtext" style="display: flex; flex-direction: row; margin: 0 .5rem 0rem .5rem; flex-grow: 0; flex-shrink: 1; justify-content: center;">
         {{votesAsPercentage}}%
     </div>
+    <div *ngIf="!isPostVotedOptionVoted" style="height:0.25rem;">&nbsp;</div>
 </a>

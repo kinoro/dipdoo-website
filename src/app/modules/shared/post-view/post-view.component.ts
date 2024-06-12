@@ -41,11 +41,20 @@ export class PostViewComponent implements OnInit {
     get tagsArray() { return this.post.tags == null ? [] : this.post.tags; }
     get postLink() { return `/post/${this.helperService.buildFriendlyId(this.post)}`; }
     get hasVotedOnPost() { return this.post.hasUserVoted == true; }
+    get isMobile() { return this.appService.isMobile; }
+    get isTablet() { return this.appService.isTablet; }
     get isDesktop() { return this.appService.isDesktop; }
+    get isWidescreen() { return this.appService.isWidescreen; }
     get countOptions() { return this.post.options.length; }
     get isAdminOrOwner() { return this.appService.isSignedIn && (this.authService.userAccount.isAdmin || this.post.userAccountId == this.authService.userAccount.id); }
     get imageUrl() { return this.postHelperService.getImageUrlOrDefault(this.post); }
     get isDefaultImageUrl() { return this.imageUrl == this.postHelperService.getDefaultImageUrl(); }
+    get hasOptionWithImage() { return this.post.options.find(x => x.imageUrl?.length > 0); }
+    get hasOptionLengthGt20() { return this.post.options.find(x => x.text?.length > 20) != null }
+    get hasOptionLengthGt15() { return this.post.options.find(x => x.text?.length > 15) != null }
+    get hasOptionLengthGt4() { return this.post.options.find(x => x.text?.length > 4) != null }
+    get hasOptionLengthGt1() { return this.post.options.find(x => x.text?.length > 1) != null }
+    get hasOptionOnlySmall() { return !this.hasOptionLengthGt4 && !this.hasOptionWithImage; }
 
     constructor(private appService: AppService,
         private postHelperService: PostHelperService,
