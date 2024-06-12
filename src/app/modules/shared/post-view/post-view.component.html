@@ -4,13 +4,13 @@
 
 
         <!-- image -->
-        <figure *ngIf="imageUrl?.length > 0 && getMediaType(post.linkUrl) == mediaTypeEnum.Unknown"
+        <figure *ngIf="imageUrl != null && getMediaType(post.linkUrl) == mediaTypeEnum.Unknown"
             class="image is-32x32" [class.has-cursor-pointer]="!isDefaultImageUrl"
             style="margin: 0px 0 0px 8px; min-width: 32px; min-height:32px; overflow: hidden; align-self: baseline;"
             (click)="showMediaForPost()">
             <img [src]="imageUrl" (error)="onPostImageError()" alt="post image" style="height: 100%; object-fit: contain">
         </figure>
-        <figure *ngIf="imageUrl?.length > 0 && getMediaType(post.linkUrl) == mediaTypeEnum.YouTube"
+        <figure *ngIf="imageUrl != null && getMediaType(post.linkUrl) == mediaTypeEnum.YouTube"
             class="image is-32x32"
             style="display: grid; margin: 0px 0 0px 8px; min-width: 32px; min-height:32px; cursor: pointer; overflow: hidden; align-self: baseline;"
             (click)="showMediaForPost()">

@@ -11,7 +11,7 @@ export class PostHelperService {
     }
 
     getImageUrlOrDefault(post: Post) {
-        return post.imageUrl != null ? post.imageUrl : this.getDefaultImageUrl();
+        return post.imageUrl?.length > 0 ? post.imageUrl : this.getDefaultImageUrl();
     }
 
     getDefaultImageUrl() {
